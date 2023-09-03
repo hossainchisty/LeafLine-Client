@@ -1,8 +1,8 @@
-import React from "react";
+import PropTypes from "prop-types";
 import Featured from "./Featured";
 
 const Book = ({ book }) => {
-  const { name, author, thumbnail, price, featured, id, rating } = book;
+  const { title, author, thumbnail, price, featured, id, rating } = book;
 
   // Define the star icons for reviews
   const stars = Array.from({ length: rating }, (_, index) => (
@@ -22,10 +22,10 @@ const Book = ({ book }) => {
 
   return (
     <div className="flex rounded-lg shadow-lg overflow-hidden relative">
-      <img className="w-32 h-35 object-cover" src={thumbnail} alt={name} />
+      <img className="w-32 h-35 object-cover" src={thumbnail} alt={title} />
       <div className="flex flex-col p-4 space-y-2">
         <Featured featured={featured} id={id} />
-        <h4 className="text-lg font-semibold">{name}</h4>
+        <h4 className="text-lg font-semibold">{title}</h4>
         <p className="text-gray-600">{author}</p>
         <div className="flex items-center space-x-2">{stars}</div>
         <div className="flex space-x-2">
@@ -64,4 +64,16 @@ const Book = ({ book }) => {
   );
 };
 
+
+Book.propTypes = {
+  book: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    featured: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+  }).isRequired,
+};
 export default Book;
