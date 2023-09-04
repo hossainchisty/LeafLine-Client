@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = ({ setSearchResults }) => {
+  const location = useLocation();
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (searchTerm) => {
     fetch(`http://localhost:8000/api/v1/books/search?title=${searchTerm}`)
       .then((response) => response.json())
       .then((data) => {
-        // Update the searchResults state with the data received from the backend
         setSearchResults(data.data.books);
       })
       .catch((error) => {
@@ -58,19 +59,25 @@ const Header = ({ setSearchResults }) => {
             <Link to="/signin" className="text-gray-600 font-semibold">
               Sign In
             </Link>
+            <span className="mx-1">|</span>
+            <Link to="/admin" className="text-gray-600 font-semibold">
+              Admin
+            </Link>
           </div>
         </div>
       </div>
-      {/* Responsive Search Input */}
-      <div className="mt-3 md:flex md:items-center md:justify-center">
-        <input
-          type="text"
-          placeholder="Search books..."
-          className="w-full md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black"
-          value={searchTerm}
-          onChange={handleChange}
-        />
-      </div>
+      {/* Responsive Search Input (conditionally rendered) */}
+      {location.pathname === "/" && (
+        <div className="mt-3 md:flex md:items-center md:justify-center">
+          <input
+            type="text"
+            placeholder="Search books..."
+            className="w-full md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black"
+            value={searchTerm}
+            onChange={handleChange}
+          />
+        </div>
+      )}
     </header>
   );
 };
