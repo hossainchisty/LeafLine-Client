@@ -1,3 +1,17 @@
+# [1.20.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.19.0...v1.20.0) (2023-09-04)
+
+
+### Bug Fixes
+
+* Search bar only for home page ([51c58a3](https://github.com/hossainchisty/LeafLine-Client/commit/51c58a39e582e10732b6a04ed36d7c16f779f991))
+
+
+### Features
+
+* Added Admin dashboard ([a2eaa08](https://github.com/hossainchisty/LeafLine-Client/commit/a2eaa08bf8f51513fcba3e8a5adb222d181241bc))
+
+
+
 # [1.19.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.18.0...v1.19.0) (2023-09-03)
 
 
