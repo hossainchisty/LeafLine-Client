@@ -28,36 +28,6 @@ const Book = ({ book }) => {
         <h4 className="text-lg font-semibold">{title}</h4>
         <p className="text-gray-600">{author}</p>
         <div className="flex items-center space-x-2">{stars}</div>
-        <div className="flex space-x-2">
-          <button className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center hover:bg-yellow-500 focus:outline-none">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 text-white"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M13.293 6.293a1 1 0 011.414 1.414L11 12.414V15a1 1 0 11-2 0v-2.586L5.293 7.707a1 1 0 111.414-1.414L10 10.586l3.293-3.293z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-          <button className="w-6 h-6 bg-red-400 rounded-full flex items-center justify-center hover:bg-red-500 focus:outline-none">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 text-white"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.293 6.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414L11 12.414l-3.293-3.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
         <p className="text-blue-600 font-semibold text-lg">BDT {price}</p>
       </div>
     </div>
