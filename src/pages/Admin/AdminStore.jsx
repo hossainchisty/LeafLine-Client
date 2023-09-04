@@ -1,12 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { formatISO9075 } from "date-fns";
 
 function AdminStore() {
   const [books, setBooks] = useState([]);
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     // Fetch book data and set it to the books state
-    fetch("http://localhost:8000/api/v1/books/list")
+    fetch(`${apiBaseDomain}/books/list`)
       .then((response) => response.json())
       .then((data) => {
         setBooks(data.data.books);

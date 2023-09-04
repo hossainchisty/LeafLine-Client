@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Featured from "./Featured";
 
 const Book = ({ book }) => {
-  const { title, author, thumbnail, price, featured, id, rating } = book;
+  const { title, author, thumbnail, price, featured, rating, id } = book;
 
   // Define the star icons for reviews
   const stars = Array.from({ length: rating }, (_, index) => (
@@ -25,7 +26,9 @@ const Book = ({ book }) => {
       <img className="w-32 h-35 object-cover" src={thumbnail} alt={title} />
       <div className="flex flex-col p-4 space-y-2">
         <Featured featured={featured} id={id} />
-        <h4 className="text-lg font-semibold">{title}</h4>
+        <Link to={`/${title}`}>
+          <h4 className="text-lg font-semibold">{title}</h4>
+        </Link>
         <p className="text-gray-600">{author}</p>
         <div className="flex items-center space-x-2">{stars}</div>
         <p className="text-blue-600 font-semibold text-lg">BDT {price}</p>
@@ -33,7 +36,6 @@ const Book = ({ book }) => {
     </div>
   );
 };
-
 
 Book.propTypes = {
   book: PropTypes.shape({

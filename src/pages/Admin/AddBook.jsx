@@ -12,6 +12,7 @@ const AddBook = () => {
     featured: false,
     rating: "",
   });
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -35,7 +36,7 @@ const AddBook = () => {
     };
 
     // Send a POST request to your backend API endpoint
-    fetch("http://localhost:8000/api/v1/books/", {
+    fetch(`${apiBaseDomain}/books/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

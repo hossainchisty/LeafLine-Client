@@ -4,14 +4,18 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = ({ setSearchResults }) => {
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const location = useLocation();
 
   const [searchTerm, setSearchTerm] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [cartCount, setCartCount] = useState(0);
 
   const handleSearch = (searchTerm) => {
-    fetch(`http://localhost:8000/api/v1/books/search?title=${searchTerm}`)
+    fetch(`${apiBaseDomain}/books/book/search?title=${searchTerm}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data.data.books);
         setSearchResults(data.data.books);
       })
       .catch((error) => {
@@ -64,6 +68,27 @@ const Header = ({ setSearchResults }) => {
               Admin
             </Link>
           </div>
+
+          <div className="flex items-center space-x-2">
+          <Link to="/cart">
+            {/* Cart Icon (you can use an icon library like Font Awesome) */}
+            <div className="relative">
+              <svg
+                // Add your cart icon SVG or Font Awesome code here
+                className="w-10 h-10"
+                viewBox="0 0 24 24"
+              >
+                {/* Cart icon SVG */}
+              </svg>
+              {cartCount > 0 && (
+                <div className="absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 rounded-full w-6 h-6 text-white flex items-center justify-center text-sm">
+                  {cartCount}
+                </div>
+              )}
+            </div>
+          </Link>
+          {/* ... (other code) */}
+        </div>
         </div>
       </div>
       {/* Responsive Search Input (conditionally rendered) */}
