@@ -1,3 +1,12 @@
+# [1.19.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.18.0...v1.19.0) (2023-09-03)
+
+
+### Features
+
+* Added dynamic properties and realtime search results ([684963e](https://github.com/hossainchisty/LeafLine-Client/commit/684963ecf735ae9777a16e623e2eae2f3e326252))
+
+
+
 # [1.18.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.17.0...v1.18.0) (2023-09-02)
 
 
