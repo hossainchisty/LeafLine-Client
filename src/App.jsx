@@ -4,11 +4,12 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import BookList from "./components/BookList";
 import Profile from "./components/Profile";
-import Signin from "./pages/Signin";
-import Signup from "./pages/Signup";
+import Signin from "./pages/auth/Signin";
+import Signup from "./pages/auth/Signup";
 import AddBook from "./pages/Admin/AddBook";
 import AdminStore from "./pages/Admin/AdminStore";
 import AdminDashboard from "./components/Admin/AdminDashboard";
+import EmailVerification from "./components/auth/EmailVerification";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import BookDetails from "./pages/BookDetails";
 
@@ -33,6 +34,7 @@ function App() {
       <Header setSearchResults={setSearchResults} />
       <div className="container mx-auto p-4">
         <Routes>
+          {/* Route related to book searching and browsing */}
           <Route
             path="/"
             element={
@@ -41,11 +43,17 @@ function App() {
               />
             }
           />
-
           <Route path="/:title" element={<BookDetails />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/signin" element={<Signin />} />
+
+          {/* Route related to authentication */}
           <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/verify-email/:token" element={<EmailVerification />} />
+
+          {/* Route related to user profile */}
+          <Route path="/profile" element={<Profile />} />
+
+          {/* Route related to admin panel */}
           <Route path="/admin/*" element={<AdminDashboard />} />
           <Route path="/admin/add" element={<AddBook />} />
           <Route path="/admin/users" element={<AdminUsers />} />
