@@ -1,3 +1,13 @@
+## [1.20.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.20.0...v1.20.1) (2023-09-05)
+
+
+### Performance Improvements
+
+* Improve readable ([0197533](https://github.com/hossainchisty/LeafLine-Client/commit/0197533d9aaa1e79b6f4624217fdd8b76a0c6c85))
+* improvements made: ([8667816](https://github.com/hossainchisty/LeafLine-Client/commit/86678163d96a0b9f30f84aea50f2ea6cba7df612))
+
+
+
 # [1.20.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.19.0...v1.20.0) (2023-09-04)
 
 
