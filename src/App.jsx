@@ -11,24 +11,16 @@ import AdminStore from "./pages/Admin/AdminStore";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import BookDetails from "./pages/BookDetails";
-import Cart from "./components/Cart";
 
 function App() {
   const [books, setBooks] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
-  // Initialize cart state with data from local storage or an empty array
-  const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
 
   useEffect(() => {
-    // Fetch book data and set it to the books state
     fetch(`${apiBaseDomain}/books/list`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.data.books);
         setBooks(data.data.books);
       })
       .catch((error) => {
@@ -60,7 +52,6 @@ function App() {
           <Route path="/admin/books" element={<AdminStore />} />
         </Routes>
       </div>
-      <Cart cart={cart} setCart={setCart} />
     </div>
   );
 }

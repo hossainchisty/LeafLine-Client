@@ -1,60 +1,39 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
+import ClipLoader from "react-spinners/ClipLoader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const BookDetails = () => {
   const { title } = useParams();
   const [book, setBook] = useState(null);
-  const [cartCount, setCartCount] = useState(0);
+  const [loading, setLoading] = useState(true);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
-  console.log(cartCount);
-  // Assuming you have a cart state and a function to add items to the cart
-  const [cart, setCart] = useState([]);
-  
-   // Function to load cart items from local storage
-   const loadCartFromLocalStorage = () => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
-    }
-  };
-
-
 
   useEffect(() => {
+    setLoading(true);
     fetch(`${apiBaseDomain}/books/${title}`)
       .then((response) => response.json())
       .then((bookInfo) => {
-        setBook(bookInfo.book[0]);
+        setBook(bookInfo.data[0]);
       })
       .catch((error) => {
         console.error("Error fetching book details:", error);
+      })
+      .finally(() => {
+        setLoading(false); // Done loading
       });
 
-    // Load cart items from local storage on component mount
-    loadCartFromLocalStorage();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title]);
 
 
-  // Function to add a book to the cart and save it to local storage
-  const addToCart = () => {
-    if (book) {
-      const updatedCart = [...cart, book];
-      setCart(updatedCart);
-            // Update cart state
-    setCart(updatedCart);
-
-    // Update cart count
-    setCartCount(updatedCart.length);
-      // Save the updated cart to local storage
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-      alert(`${book.title} added to the cart!`);
-    }
-  };
 
   if (!book) {
-    return <div>Loading...</div>;
+    return <div>{loading && (
+      <div className="loading-container">
+        <ClipLoader color={"rgba(106, 89, 187, 0.888)"} loading={loading} size={120} />
+      </div>
+    )}</div>;
   }
 
   return (
@@ -136,12 +115,12 @@ const BookDetails = () => {
               <span className="title-font font-medium text-2xl text-gray-900">
                 BDT {book.price}
               </span>
-              <button
+              {/* <button
             onClick={addToCart}
             className="flex ml-auto text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded"
           >
             Add to Cart
-          </button>
+          </button> */}
 
             </div>
           </div>

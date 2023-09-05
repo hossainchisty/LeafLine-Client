@@ -7,11 +7,10 @@ function AdminStore() {
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    // Fetch book data and set it to the books state
     fetch(`${apiBaseDomain}/books/list`)
       .then((response) => response.json())
-      .then((data) => {
-        setBooks(data.data.books);
+      .then((bookInfo) => {
+        setBooks(bookInfo.data.books);
       })
       .catch((error) => {
         console.error("Error fetching book data:", error);
