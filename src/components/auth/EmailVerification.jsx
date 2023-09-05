@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 const EmailVerification = () => {
   const { token } = useParams();
   const [isVerified, setIsVerified] = useState(false);
+  const [limitExpires, setLimitExpires] = useState(false);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
@@ -21,6 +22,8 @@ const EmailVerification = () => {
 
         if (response.status == 200) {
           setIsVerified(true);
+        } else if (response.status == 429) {
+          setLimitExpires(true);
         } else {
           const data = await response.json();
           toast.error(data.message);
@@ -43,6 +46,16 @@ const EmailVerification = () => {
               Email Verified!
             </h2>
             <p>Your email has been successfully verified.</p>
+          </div>
+        ) : limitExpires ? (
+          <div>
+            <h2 className="text-1xl font-semibold mb-4 text-red-400">
+              Rate Limit Exceeded
+            </h2>
+            <p>
+              Too many verification requests from this IP. Please try again
+              after an hour.
+            </p>
           </div>
         ) : (
           <div>
