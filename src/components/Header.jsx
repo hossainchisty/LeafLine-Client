@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import { UserContext } from "../contexts/UserContext";
 
 const Header = ({ setSearchResults }) => {
-  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
-  const location = useLocation();
-
   const [searchTerm, setSearchTerm] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const [cartCount, setCartCount] = useState(0);
+  const { setUserInfo, userInfo } = useContext(UserContext);
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearch = (searchTerm) => {
     fetch(`${apiBaseDomain}/books/book/search?title=${searchTerm}`)
@@ -31,6 +32,19 @@ const Header = ({ setSearchResults }) => {
     setSearchTerm(e.target.value);
   };
 
+  function logout() {
+    fetch(`${apiBaseDomain}/users/logout`, {
+      credentials: "include",
+      method: "POST",
+    }).then(() => {
+      setUserInfo(null);
+      navigate("/login"); // Navigate to login page after logout
+    });
+  }
+
+  const isAuthorized = userInfo.users?.full_name;
+  console.log(userInfo);
+  console.log(isAuthorized);
   return (
     <header className="p-4 bg-white text-black">
       <div className="flex justify-between items-center">
@@ -44,16 +58,29 @@ const Header = ({ setSearchResults }) => {
             LeafLine
           </Link>
         </div>
-        <div className="flex items-center space-x-2">
-          <Link to="/profile">
-            <div className="relative">
-              <img
-                src="https://avatars.githubusercontent.com/u/62835101?v=4"
-                alt="User Avatar"
-                className="w-10 h-10 rounded-full"
-              />
+        {isAuthorized && (
+          <div className="flex items-center space-x-2">
+            <Link to="/profile">
+              <div className="relative">
+                <img
+                  src="https://avatars.githubusercontent.com/u/62835101?v=4"
+                  alt="User Avatar"
+                  className="w-10 h-10 rounded-full"
+                />
+              </div>
+            </Link>
+            <div className="ml-2">
+              {/* <Link to="/admin" className="text-gray-600 font-semibold">
+                Admin
+              </Link> */}
+              {/* <span className="mx-1">|</span> */}
+              <a onClick={logout} className="text-gray-600 font-semibold">
+                Log out
+              </a>
             </div>
-          </Link>
+          </div>
+        )}
+        {!isAuthorized && (
           <div className="ml-2">
             <Link to="/signup" className="text-gray-600 font-semibold">
               Sign Up
@@ -62,12 +89,8 @@ const Header = ({ setSearchResults }) => {
             <Link to="/signin" className="text-gray-600 font-semibold">
               Sign In
             </Link>
-            <span className="mx-1">|</span>
-            <Link to="/admin" className="text-gray-600 font-semibold">
-              Admin
-            </Link>
           </div>
-        </div>
+        )}
       </div>
       {/* Responsive Search Input (conditionally rendered) */}
       {location.pathname === "/" && (

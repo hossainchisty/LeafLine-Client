@@ -1,13 +1,42 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
 
 const Signin = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { setUserInfo } = useContext(UserContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    // Add your sign-in logic here, such as sending the data to a backend server
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch(`${apiBaseDomain}/users/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.status === 200) {
+        const userInfo = await response.json();
+        setUserInfo(userInfo);
+        navigate("/"); // Redirect to the home page
+      } else if (response.status === 403) {
+        toast.error("You're not verified, please verify your email address.");
+      } else {
+        toast.error("The email or password you entered is incorrect.");
+      }
+    } catch (error) {
+      toast.error("An error occurred while logging in.");
+    }
   };
 
   return (
@@ -16,7 +45,10 @@ const Signin = () => {
         <h2 className="text-1xl font-semibold mb-4">👋 Welcome</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-600"
+            >
               Email
               <span className="text-red-600 text-lg font-bold">*</span>
             </label>
@@ -38,7 +70,10 @@ const Signin = () => {
             </div>
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-600"
+            >
               Password
               <span className="text-red-600 text-lg font-bold">*</span>
             </label>

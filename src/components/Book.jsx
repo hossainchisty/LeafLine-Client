@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Featured from "./Featured";
 
@@ -26,9 +25,9 @@ const Book = ({ book }) => {
       <img className="w-32 h-35 object-cover" src={thumbnail} alt={title} />
       <div className="flex flex-col p-4 space-y-2">
         <Featured featured={featured} id={id} />
-        <Link to={`/${title}`}>
-          <h4 className="text-lg font-semibold">{title}</h4>
-        </Link>
+
+        <h4 className="text-lg font-semibold">{title}</h4>
+
         <p className="text-gray-600">{author}</p>
         <div className="flex items-center space-x-2">{stars}</div>
         <p className="text-blue-600 font-semibold text-lg">BDT {price}</p>
