@@ -1,3 +1,12 @@
+# [1.21.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.20.1...v1.21.0) (2023-09-05)
+
+
+### Features
+
+*  it will display the message for email verification failure. ([f72e641](https://github.com/hossainchisty/LeafLine-Client/commit/f72e641e5ea2fab23e1a11c0dbdc439f52475f91))
+
+
+
 ## [1.20.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.20.0...v1.20.1) (2023-09-05)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * Added signup/signin user profile UI ([e094cc7](https://github.com/hossainchisty/LeafLine-Client/commit/e094cc7949cc0c8f2dbb458d376b779e8096e1cc))
-
-
-
-# [1.17.0](https://github.com/hossainchisty/LeafLine-Client/compare/ec01c99cd989fb243dcc02b85c7e6629ab5b04a2...v1.17.0) (2023-09-01)
-
-
-### Features
-
-* intial release LeafLine ([ec01c99](https://github.com/hossainchisty/LeafLine-Client/commit/ec01c99cd989fb243dcc02b85c7e6629ab5b04a2))
 
 
 
