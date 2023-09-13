@@ -1,3 +1,12 @@
+# [1.22.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.21.0...v1.22.0) (2023-09-13)
+
+
+### Features
+
+* Introduce redux for state management ([51078a4](https://github.com/hossainchisty/LeafLine-Client/commit/51078a4066209024f7d638e9eae805adcb45e029))
+
+
+
 # [1.21.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.20.1...v1.21.0) (2023-09-05)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * Added dynamic properties and realtime search results ([684963e](https://github.com/hossainchisty/LeafLine-Client/commit/684963ecf735ae9777a16e623e2eae2f3e326252))
-
-
-
-# [1.18.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.17.0...v1.18.0) (2023-09-02)
-
-
-### Features
-
-* Added signup/signin user profile UI ([e094cc7](https://github.com/hossainchisty/LeafLine-Client/commit/e094cc7949cc0c8f2dbb458d376b779e8096e1cc))
 
 
 
