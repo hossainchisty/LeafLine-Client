@@ -1,13 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from "prop-types";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
-import { UserContext } from "../contexts/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { resetUserInfo } from "../store/userSlice";
 
 const Header = ({ setSearchResults }) => {
+  const dispatch = useDispatch();
+
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const isLoggedIn = !!userInfo.users;
+
   const [searchTerm, setSearchTerm] = useState("");
-  const { setUserInfo, userInfo } = useContext(UserContext);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,14 +41,13 @@ const Header = ({ setSearchResults }) => {
       credentials: "include",
       method: "POST",
     }).then(() => {
-      setUserInfo(null);
-      navigate("/login"); // Navigate to login page after logout
+      // Dispatch the resetUserInfo action to clear the user state
+      dispatch(resetUserInfo());
+
+      navigate("/signin"); // Navigate to the signin page after logout
     });
   }
 
-  const isAuthorized = userInfo.users?.full_name;
-  console.log(userInfo);
-  console.log(isAuthorized);
   return (
     <header className="p-4 bg-white text-black">
       <div className="flex justify-between items-center">
@@ -58,12 +61,12 @@ const Header = ({ setSearchResults }) => {
             LeafLine
           </Link>
         </div>
-        {isAuthorized && (
+        {isLoggedIn && (
           <div className="flex items-center space-x-2">
             <Link to="/profile">
               <div className="relative">
                 <img
-                  src="https://avatars.githubusercontent.com/u/62835101?v=4"
+                  src={userInfo.users.avatar}
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full"
                 />
@@ -74,13 +77,13 @@ const Header = ({ setSearchResults }) => {
                 Admin
               </Link> */}
               {/* <span className="mx-1">|</span> */}
-              <a onClick={logout} className="text-gray-600 font-semibold">
+              <button onClick={logout} className="text-gray-600 font-semibold">
                 Log out
-              </a>
+              </button>
             </div>
           </div>
         )}
-        {!isAuthorized && (
+        {!isLoggedIn && (
           <div className="ml-2">
             <Link to="/signup" className="text-gray-600 font-semibold">
               Sign Up

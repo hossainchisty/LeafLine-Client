@@ -2,11 +2,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { UserContext } from "../../contexts/UserContext";
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "../../store/userSlice";
 
 const Signin = () => {
-  const { setUserInfo } = useContext(UserContext);
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -19,6 +20,7 @@ const Signin = () => {
     try {
       const response = await fetch(`${apiBaseDomain}/users/login`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -26,11 +28,15 @@ const Signin = () => {
       });
 
       if (response.status === 200) {
-        const userInfo = await response.json();
-        setUserInfo(userInfo);
+        const userData = await response.json();
+        dispatch(setUserInfo(userData));
         navigate("/"); // Redirect to the home page
       } else if (response.status === 403) {
         toast.error("You're not verified, please verify your email address.");
+      } else if (response.status === 429) {
+        toast.error("Too many requests, please try again later.", {
+          icon: "🛑",
+        });
       } else {
         toast.error("The email or password you entered is incorrect.");
       }
