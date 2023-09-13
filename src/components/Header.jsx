@@ -6,15 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetUserInfo } from "../store/userSlice";
 
 const Header = ({ setSearchResults }) => {
+  // State and Hooks
   const dispatch = useDispatch();
-
   const userInfo = useSelector((state) => state.user.userInfo);
   const isLoggedIn = !!userInfo.users;
-
   const [searchTerm, setSearchTerm] = useState("");
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Handlers
 
   const handleSearch = (searchTerm) => {
     fetch(`${apiBaseDomain}/books/book/search?title=${searchTerm}`)
