@@ -9,7 +9,7 @@ import Signup from "./pages/auth/Signup";
 import AddBook from "./pages/Admin/AddBook";
 import AdminStore from "./pages/Admin/AdminStore";
 import AdminDashboard from "./components/Admin/AdminDashboard";
-import EmailVerification from "./components/auth/EmailVerification";
+import EmailVerification from "./components/Auth/EmailVerification";
 import AdminUsers from "./pages/Admin/AdminUsers";
 
 function App() {
