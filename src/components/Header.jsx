@@ -2,14 +2,17 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { resetUserInfo } from "../store/userSlice";
+// import { useSelector } from "react-redux";
+// import { resetUserInfo } from "../store/userSlice";
+import { clearToken } from "../utils/Token";
 
 const Header = ({ setSearchResults }) => {
   // State and Hooks
-  const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.user.userInfo);
-  const isLoggedIn = !!userInfo.users;
+  // const dispatch = useDispatch();
+  // const userInfo = useSelector((state) => state.user.userInfo);
+  const validToken = window.localStorage.getItem("userInfo");
+  const isLoggedIn = !!validToken;
+
   const [searchTerm, setSearchTerm] = useState("");
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
@@ -43,7 +46,8 @@ const Header = ({ setSearchResults }) => {
       method: "POST",
     }).then(() => {
       // Dispatch the resetUserInfo action to clear the user state
-      dispatch(resetUserInfo());
+      // dispatch(resetUserInfo());
+      clearToken();
 
       navigate("/signin"); // Navigate to the signin page after logout
     });
@@ -67,7 +71,7 @@ const Header = ({ setSearchResults }) => {
             <Link to="/profile">
               <div className="relative">
                 <img
-                  src={userInfo.users.avatar}
+                  src="https://microsite.hcltech.com/manufacturing/imro/img/avatar.png"
                   alt="User Avatar"
                   className="w-10 h-10 rounded-full"
                 />

@@ -2,11 +2,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { setUserInfo } from "../../store/userSlice";
+// import { useDispatch } from "react-redux";
+// import { setUserInfo } from "../../store/userSlice";
+import { storeToken } from "../../utils/Token";
 
 const Signin = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const {
     register,
@@ -29,7 +30,8 @@ const Signin = () => {
 
       if (response.status === 200) {
         const userData = await response.json();
-        dispatch(setUserInfo(userData));
+        storeToken(userData.data.token);
+        // dispatch(setUserInfo(userData));
         navigate("/"); // Redirect to the home page
       } else if (response.status === 403) {
         toast.error("You're not verified, please verify your email address.");
