@@ -1,0 +1,15 @@
+version: "1"
+
+services:
+  leafline-service:
+    container_name: leafline-container
+    image: leafline-fontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/leafline
+      - /leafline/node_modules
+    command: npm run dev

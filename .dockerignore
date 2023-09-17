@@ -1,0 +1,9 @@
+node_modules
+node_modules/*
+.gitignore
+.git
+.vercel
+.github
+.eslintrc.cjs
+.releases.json
+.CHANGLOG.md
