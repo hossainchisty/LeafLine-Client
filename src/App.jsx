@@ -1,16 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import BookList from "./components/BookList";
-import Profile from "./components/Profile";
-import Signin from "./pages/auth/Signin";
-import Signup from "./pages/auth/Signup";
-import AddBook from "./pages/Admin/AddBook";
-import AdminStore from "./pages/Admin/AdminStore";
-import AdminDashboard from "./components/Admin/AdminDashboard";
-import EmailVerification from "./components/Auth/EmailVerification";
-import AdminUsers from "./pages/Admin/AdminUsers";
+import Header from "./components/Header/Header";
+import BookList from "./components/Book/BookList";
+import Profile from "./components/Profile/Profile";
+import Signin from "./pages/Auth/Signin";
+import Signup from "./pages/Auth/Signup";
+import EmailVerification from "./components/Verification/EmailVerification";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -50,12 +46,6 @@ function App() {
 
           {/* Route related to user profile */}
           <Route path="/profile" element={<Profile />} />
-
-          {/* Route related to admin panel */}
-          <Route path="/admin/*" element={<AdminDashboard />} />
-          <Route path="/admin/add" element={<AddBook />} />
-          <Route path="/admin/users" element={<AdminUsers />} />
-          <Route path="/admin/books" element={<AdminStore />} />
         </Routes>
       </div>
     </div>

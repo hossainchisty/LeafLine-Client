@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Featured from "./Featured";
+import Featured from "./Featured/Featured";
 
 const Book = ({ book }) => {
   const { title, author, thumbnail, price, featured, rating, id } = book;

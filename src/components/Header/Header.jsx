@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import { resetUserInfo } from "../store/userSlice";
-import { clearToken } from "../utils/Token";
+import { clearToken } from "../../utils/Token";
 
 const Header = ({ setSearchResults }) => {
   // State and Hooks

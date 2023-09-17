@@ -10,7 +10,7 @@ function Profile() {
   useEffect(() => {
     // Retrieve the token from local storage
     const getToken = localStorage.getItem("userInfo");
-    const token = getToken.replace(/["']/g, "");
+    const token = getToken.replace(/["']/, "");
 
     fetch(`${apiBaseDomain}/users/me`, {
       headers: {
