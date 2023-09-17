@@ -1,3 +1,12 @@
+## [1.22.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.22.0...v1.22.1) (2023-09-16)
+
+
+### Bug Fixes
+
+* resolve path to the file ([dba1625](https://github.com/hossainchisty/LeafLine-Client/commit/dba162542e23ced1a640ee0487d8475a26692b51))
+
+
+
 # [1.22.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.21.0...v1.22.0) (2023-09-13)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * Added Admin dashboard ([a2eaa08](https://github.com/hossainchisty/LeafLine-Client/commit/a2eaa08bf8f51513fcba3e8a5adb222d181241bc))
-
-
-
-# [1.19.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.18.0...v1.19.0) (2023-09-03)
-
-
-### Features
-
-* Added dynamic properties and realtime search results ([684963e](https://github.com/hossainchisty/LeafLine-Client/commit/684963ecf735ae9777a16e623e2eae2f3e326252))
 
 
 
