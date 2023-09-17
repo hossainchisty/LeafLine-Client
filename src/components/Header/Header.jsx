@@ -91,14 +91,14 @@ const Header = ({ setSearchResults }) => {
           <div className="ml-2">
             <Link
               to="/signup"
-              className="m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100 hover:bg-gray-100 text-black"
+              className="m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100 hover:bg-gray-100 text-black hide-on-small-screen"
             >
               Sign Up
             </Link>
 
             <Link
               to="/signin"
-              className="m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100 hover:bg-gray-100 text-black"
+              className="m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100 hover:bg-gray-100 text-black hide-on-small-screen"
             >
               Sign In
             </Link>
