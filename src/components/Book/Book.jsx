@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Featured from "./Featured/Featured";
+import { FaRegHeart } from "react-icons/fa";
 
 const Book = ({ book }) => {
   const { title, author, thumbnail, price, featured, rating, id } = book;
@@ -39,19 +40,23 @@ const Book = ({ book }) => {
 
         <div className="flex items-center space-x-2">{stars}</div>
         <p className="text-blue-600 font-semibold text-lg">BDT {price}</p>
+        <p className="flex items-center">Category: Product</p>
         <div className="flex items-center space-x-2">
-          {/* Add to Cart Button */}
-          <div style={{ width: "100px" }}>
-            <button
-              className="bg-yellow-400 text-black px-3 py-1 rounded-md text-sm font-semibold"
-              onClick={() => {
-                // Handle the add to cart functionality here
-                // You can dispatch an action or update the cart state
-              }}
-            >
-              Add to Cart
-            </button>
-          </div>
+          {/* Wishlist Icon/Button */}
+          <button
+            className="text-gray-700 hover:text-blue-300 text-xs font-semibold"
+            onClick={() => {
+              // Handle the wishlist functionality here
+              // You can toggle the book's status as loved/wished or perform any related action
+            }}
+          >
+            <p className="flex items-center">
+              <span className="pr-1">
+                <FaRegHeart />
+              </span>
+              Add to Booklist{" "}
+            </p>
+          </button>
         </div>
       </div>
     </div>
