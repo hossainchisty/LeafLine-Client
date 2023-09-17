@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Featured from "./Featured/Featured";
 
@@ -25,12 +26,33 @@ const Book = ({ book }) => {
       <img className="w-32 h-35 object-cover" src={thumbnail} alt={title} />
       <div className="flex flex-col p-4 space-y-2">
         <Featured featured={featured} id={id} />
+        <Link to={`/book/${title}`}>
+          <h4 className="text-lg font-semibold">{title}</h4>
+        </Link>
 
-        <h4 className="text-lg font-semibold">{title}</h4>
+        <p className="text-gray-600">
+          by{" "}
+          <Link>
+            <span className="text-blue-400">{author}</span>
+          </Link>
+        </p>
 
-        <p className="text-gray-600">{author}</p>
         <div className="flex items-center space-x-2">{stars}</div>
         <p className="text-blue-600 font-semibold text-lg">BDT {price}</p>
+        <div className="flex items-center space-x-2">
+          {/* Add to Cart Button */}
+          <div style={{ width: "100px" }}>
+            <button
+              className="bg-yellow-400 text-black px-3 py-1 rounded-md text-sm font-semibold"
+              onClick={() => {
+                // Handle the add to cart functionality here
+                // You can dispatch an action or update the cart state
+              }}
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
