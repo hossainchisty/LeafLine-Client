@@ -1,3 +1,17 @@
+# [1.23.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.22.1...v1.23.0) (2023-09-18)
+
+
+### Features
+
+* final UI to release prod ([5cb8356](https://github.com/hossainchisty/LeafLine-Client/commit/5cb83560e0ad30cc55312e518fb243842a6673f2))
+
+
+### Performance Improvements
+
+* Here's a high-level overview of how optimistic updates could be implemented: ([fa9d5cb](https://github.com/hossainchisty/LeafLine-Client/commit/fa9d5cbbddd05486a6a4cfc7555b0163c733e8d2))
+
+
+
 ## [1.22.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.22.0...v1.22.1) (2023-09-16)
 
 
@@ -32,20 +46,6 @@
 
 * Improve readable ([0197533](https://github.com/hossainchisty/LeafLine-Client/commit/0197533d9aaa1e79b6f4624217fdd8b76a0c6c85))
 * improvements made: ([8667816](https://github.com/hossainchisty/LeafLine-Client/commit/86678163d96a0b9f30f84aea50f2ea6cba7df612))
-
-
-
-# [1.20.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.19.0...v1.20.0) (2023-09-04)
-
-
-### Bug Fixes
-
-* Search bar only for home page ([51c58a3](https://github.com/hossainchisty/LeafLine-Client/commit/51c58a39e582e10732b6a04ed36d7c16f779f991))
-
-
-### Features
-
-* Added Admin dashboard ([a2eaa08](https://github.com/hossainchisty/LeafLine-Client/commit/a2eaa08bf8f51513fcba3e8a5adb222d181241bc))
 
 
 
