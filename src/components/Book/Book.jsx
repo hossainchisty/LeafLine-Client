@@ -2,9 +2,36 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Featured from "./Featured/Featured";
 import { FaRegHeart } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const Book = ({ book }) => {
-  const { title, author, thumbnail, price, featured, rating, id } = book;
+  const { title, author, thumbnail, price, featured, rating, _id } = book;
+
+  const addToWishlist = async () => {
+    try {
+      const getToken = localStorage.getItem("userInfo");
+      const token = getToken ? getToken.replace(/["']/g, "") : "";
+
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/v1/wishlist/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ bookId: _id }),
+        }
+      );
+
+      // Check if the request was successful
+      if (response.status === 200) {
+        toast.success("Book added to wishlist successfully.");
+      }
+    } catch (error) {
+      toast.error("Error adding book to wishlist");
+    }
+  };
 
   // Define the star icons for reviews
   const stars = Array.from({ length: rating }, (_, index) => (
@@ -24,9 +51,13 @@ const Book = ({ book }) => {
 
   return (
     <div className="flex rounded-lg shadow-lg overflow-hidden relative">
-      <img className="w-32 h-35 object-cover" src={thumbnail} alt={title} />
+      <img
+        className="w-32 h-35 object-cover rounded-t-lg"
+        src={thumbnail}
+        alt={title}
+      />
       <div className="flex flex-col p-4 space-y-2">
-        <Featured featured={featured} id={id} />
+        <Featured featured={featured} id={_id} />
         <Link to={`/book/${title}`}>
           <h4 className="text-lg font-semibold">{title}</h4>
         </Link>
@@ -45,10 +76,7 @@ const Book = ({ book }) => {
           {/* Wishlist Icon/Button */}
           <button
             className="text-gray-700 hover:text-blue-300 text-xs font-semibold"
-            onClick={() => {
-              // Handle the wishlist functionality here
-              // You can toggle the book's status as loved/wished or perform any related action
-            }}
+            onClick={addToWishlist}
           >
             <p className="flex items-center">
               <span className="pr-1">
@@ -70,7 +98,7 @@ Book.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     featured: PropTypes.bool.isRequired,
-    id: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
   }).isRequired,
 };

@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import { resetUserInfo } from "../store/userSlice";
 import { clearToken } from "../../utils/Token";
+import { FaHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 
 const Header = ({ setSearchResults }) => {
@@ -78,6 +79,12 @@ const Header = ({ setSearchResults }) => {
                 />
               </div>
             </Link>
+            <div className="text-3xl">
+              <Link to="/wish-list" className="relative">
+                {/* <FaCartPlus className="mr-3" /> */}
+                <FaHeart />
+              </Link>
+            </div>
             <div className="text-3xl">
               <Link to="/cart" className="relative">
                 <FaCartPlus className="mr-3" />
