@@ -1,0 +1,147 @@
+import { useState, useEffect } from "react";
+
+const Favorite = () => {
+  const [favoriteBooks, setFavoriteBooks] = useState([]);
+  const [removeBookId, setRemoveBookId] = useState(null);
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+
+  const getToken = localStorage.getItem("userInfo");
+  const token = getToken ? getToken.replace(/["']/g, "") : "";
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/v1/wishlist/", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setFavoriteBooks(data.wishlistedBooks);
+      })
+      .catch((error) => {
+        console.error("Error fetching favorite books:", error);
+      });
+  }, [token]);
+
+  const openRemoveModal = (bookId) => {
+    setRemoveBookId(bookId);
+    setIsRemoveModalOpen(true);
+  };
+
+  const closeRemoveModal = () => {
+    setIsRemoveModalOpen(false);
+  };
+
+  const removeBook = () => {
+    // Remove the item from the UI immediately
+    setFavoriteBooks((prevBooks) =>
+      prevBooks.filter((book) => book._id !== removeBookId)
+    );
+
+    fetch(`http://localhost:8000/api/v1/wishlist/remove`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ bookId: removeBookId }),
+    })
+      .then((response) => {
+        if (response.status === 204) {
+          // Do nothing because the item has already been removed from the UI
+        } else {
+          // Revert the UI state by adding the removed item back
+          setFavoriteBooks((prevBooks) => [
+            ...prevBooks,
+            findBookById(removeBookId),
+          ]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error removing book from favorites:", error);
+        // Revert the UI state by adding the removed item back
+        setFavoriteBooks((prevBooks) => [
+          ...prevBooks,
+          findBookById(removeBookId),
+        ]);
+      });
+
+    setIsRemoveModalOpen(false);
+  };
+
+  // Helper function to find a book by ID
+  const findBookById = (id) => {
+    return favoriteBooks.find((book) => book._id === id);
+  };
+
+  return (
+    <div className="bg-white">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          Customers also purchased
+        </h2>
+        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          {favoriteBooks.map((book) => (
+            <div key={book._id} className="group relative">
+              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                <img
+                  src={book.thumbnail}
+                  alt={book.title}
+                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                />
+              </div>
+              <div className="mt-4 flex justify-between">
+                <div>
+                  <h3 className="text-sm text-gray-700">{book.title}</h3>
+                </div>
+                <p className="text-sm font-medium text-gray-900">
+                  {book.price}
+                </p>
+              </div>
+              <div className="flex items-center mt-5">
+                <button
+                  className="bg-red-200 p-1 w-full text-center rounded-lg hover:bg-red-300 cursor-pointer"
+                  onClick={() => openRemoveModal(book._id)}
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        {isRemoveModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 shadow-md">
+            <div className="bg-white p-6 rounded-lg">
+              <h2 className="text-xl font-semibold mb-4">
+                Remove Book from Favorites
+              </h2>
+              <p className="mb-4">
+                Are you sure you want to remove this book from your favorites?
+              </p>
+              <div className="flex justify-center space-x-4">
+                <button
+                  className="text-gray-700 hover:text-blue-300 text-xs font-semibold"
+                  onClick={() => {
+                    removeBook();
+                    closeRemoveModal();
+                  }}
+                >
+                  Confirm
+                </button>
+                <button
+                  className="text-gray-700 hover:text-blue-300 text-xs font-semibold"
+                  onClick={closeRemoveModal}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Favorite;
