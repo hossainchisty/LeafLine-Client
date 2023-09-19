@@ -1,3 +1,12 @@
+## [1.24.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.0...v1.24.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* Added env domain path ([b261ef9](https://github.com/hossainchisty/LeafLine-Client/commit/b261ef982e02f384e78dd22651f63dc192a3adde))
+
+
+
 # [1.24.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.23.0...v1.24.0) (2023-09-19)
 
 
@@ -36,15 +45,6 @@
 ### Features
 
 * Introduce redux for state management ([51078a4](https://github.com/hossainchisty/LeafLine-Client/commit/51078a4066209024f7d638e9eae805adcb45e029))
-
-
-
-# [1.21.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.20.1...v1.21.0) (2023-09-05)
-
-
-### Features
-
-*  it will display the message for email verification failure. ([f72e641](https://github.com/hossainchisty/LeafLine-Client/commit/f72e641e5ea2fab23e1a11c0dbdc439f52475f91))
 
 
 
