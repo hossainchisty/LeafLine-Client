@@ -4,12 +4,13 @@ const Favorite = () => {
   const [favoriteBooks, setFavoriteBooks] = useState([]);
   const [removeBookId, setRemoveBookId] = useState(null);
   const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   const getToken = localStorage.getItem("userInfo");
   const token = getToken ? getToken.replace(/["']/g, "") : "";
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/wishlist/", {
+    fetch(`${apiBaseDomain}/wishlist/`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -39,7 +40,7 @@ const Favorite = () => {
       prevBooks.filter((book) => book._id !== removeBookId)
     );
 
-    fetch(`http://localhost:8000/api/v1/wishlist/remove`, {
+    fetch(`${apiBaseDomain}/wishlist/remove`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
