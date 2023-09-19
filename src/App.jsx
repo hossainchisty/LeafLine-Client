@@ -9,6 +9,7 @@ import Signup from "./pages/Auth/Signup";
 import EmailVerification from "./components/Verification/EmailVerification";
 import BookDetails from "./components/Book/BookDetails";
 import Cart from "./components/Cart/Cart";
+import PasswordReset from "./pages/Auth/PasswordReset";
 // import Favorite from "./components/Favorite/Favorite";
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           {/* <Route path="/wish-list" element={<Favorite />} /> */}
           <Route path="/book/:title" element={<BookDetails books={books} />} />
+          <Route path="/forget-password" element={<PasswordReset />} />
         </Routes>
       </div>
     </div>
