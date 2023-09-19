@@ -6,23 +6,21 @@ import { toast } from "react-hot-toast";
 
 const Book = ({ book }) => {
   const { title, author, thumbnail, price, featured, rating, _id } = book;
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   const addToWishlist = async () => {
     try {
       const getToken = localStorage.getItem("userInfo");
       const token = getToken ? getToken.replace(/["']/g, "") : "";
 
-      const response = await fetch(
-        "http://127.0.0.1:8000/api/v1/wishlist/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ bookId: _id }),
-        }
-      );
+      const response = await fetch(`${apiBaseDomain}/wishlist/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ bookId: _id }),
+      });
 
       // Check if the request was successful
       if (response.status === 200) {
