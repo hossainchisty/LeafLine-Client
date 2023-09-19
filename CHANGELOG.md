@@ -1,3 +1,12 @@
+# [1.26.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.25.0...v1.26.0) (2023-09-19)
+
+
+### Features
+
+* Improve UI of star of reviews ([b3da6cf](https://github.com/hossainchisty/LeafLine-Client/commit/b3da6cf9a1f1e2c7d8f6b6384df3030de68fd7b7))
+
+
+
 # [1.25.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.2...v1.25.0) (2023-09-19)
 
 
@@ -31,20 +40,6 @@
 ### Features
 
 * New feature add to wishlist ([0d2fea3](https://github.com/hossainchisty/LeafLine-Client/commit/0d2fea340a31cbbd52dd8537f3133efe27eac0a7))
-
-
-
-# [1.23.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.22.1...v1.23.0) (2023-09-18)
-
-
-### Features
-
-* final UI to release prod ([5cb8356](https://github.com/hossainchisty/LeafLine-Client/commit/5cb83560e0ad30cc55312e518fb243842a6673f2))
-
-
-### Performance Improvements
-
-* Here's a high-level overview of how optimistic updates could be implemented: ([fa9d5cb](https://github.com/hossainchisty/LeafLine-Client/commit/fa9d5cbbddd05486a6a4cfc7555b0163c733e8d2))
 
 
 
