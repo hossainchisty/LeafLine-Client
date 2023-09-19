@@ -2,26 +2,21 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { resetUserInfo } from "../store/userSlice";
 import { clearToken } from "../../utils/Token";
-import { FaHeart } from "react-icons/fa";
+// import { FaHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 
 const Header = ({ setSearchResults }) => {
   // State and Hooks
-  // const dispatch = useDispatch();
-  // const userInfo = useSelector((state) => state.user.userInfo);
+  const [searchTerm, setSearchTerm] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const validToken = window.localStorage.getItem("userInfo");
   const isLoggedIn = !!validToken;
-
-  const [searchTerm, setSearchTerm] = useState("");
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
-  const navigate = useNavigate();
-  const location = useLocation();
 
   // Handlers
-
   const handleSearch = (searchTerm) => {
     fetch(`${apiBaseDomain}/books/book/search?title=${searchTerm}`)
       .then((response) => response.json())
@@ -47,11 +42,8 @@ const Header = ({ setSearchResults }) => {
       credentials: "include",
       method: "POST",
     }).then(() => {
-      // Dispatch the resetUserInfo action to clear the user state
-      // dispatch(resetUserInfo());
       clearToken();
-
-      navigate("/signin"); // Navigate to the signin page after logout
+      navigate("/signin");
     });
   }
 
@@ -79,12 +71,11 @@ const Header = ({ setSearchResults }) => {
                 />
               </div>
             </Link>
-            <div className="text-3xl">
+            {/* <div className="text-3xl">
               <Link to="/wish-list" className="relative">
-                {/* <FaCartPlus className="mr-3" /> */}
                 <FaHeart />
               </Link>
-            </div>
+            </div> */}
             <div className="text-3xl">
               <Link to="/cart" className="relative">
                 <FaCartPlus className="mr-3" />

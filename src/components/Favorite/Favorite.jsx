@@ -76,12 +76,9 @@ const Favorite = () => {
   };
 
   return (
-    <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-      <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-        My Wishlist
-        <br />
-        You have {favoriteBooks.length} product(s) in your wishlist
-      </h2>
+    <div className="mx-auto max-w-2xl sm:px-6 lg:max-w-7xl lg:px-8">
+      <h3 className="text-xl font-semibold mb-2 text-black">My Wishlist</h3>
+      <p>You have {favoriteBooks.length} product(s) in your wishlist</p>
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {favoriteBooks.map((book) => (
           <div key={book._id} className="group relative">

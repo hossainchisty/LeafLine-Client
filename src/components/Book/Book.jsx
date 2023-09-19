@@ -71,11 +71,10 @@ const Book = ({ book }) => {
 
         <div className="flex items-center space-x-2">{stars}</div>
         <p className="text-blue-600 font-semibold text-lg">BDT {price}</p>
-        <p className="flex items-center">Category: Product</p>
         <div className="flex items-center space-x-2">
           {/* Wishlist Icon/Button */}
           <button
-            className="text-gray-700 hover:text-blue-300 text-xs font-semibold"
+            className="text-black hover:text-green-500 text-xs font-semibold"
             onClick={addToWishlist}
           >
             <p className="flex items-center">

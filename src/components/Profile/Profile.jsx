@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import toast from "react-hot-toast";
+import Favorite from "../Favorite/Favorite";
 
 function Profile() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
+  // const [favoriteBooks, setFavoriteBooks] = useState([]);
 
   useEffect(() => {
-    // Retrieve the token from local storage
     const getToken = localStorage.getItem("userInfo");
-    const token = getToken.replace(/["']/, "");
+    const token = getToken ? getToken.replace(/["']/g, "") : "";
 
     fetch(`${apiBaseDomain}/users/me`, {
       headers: {
-        Authorization: `Bearer ${token}`, // Include the token in the "Authorization" header
+        Authorization: `Bearer ${token}`,
       },
     })
       .then(async (response) => {
@@ -22,12 +23,11 @@ function Profile() {
           const data = await response.json();
           setUserData(data.user);
         } else {
-          setError("Failed to fetch user data");
+          toast.error("Failed to fetch user data");
         }
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
-        setError("An error occurred while fetching user data");
       })
       .finally(() => {
         setLoading(false);
@@ -56,10 +56,6 @@ function Profile() {
     );
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   if (!userData) {
     // Handle the case when userData is still null (optional)
     return null;
@@ -67,8 +63,8 @@ function Profile() {
 
   // Once data is available, render the user profile
   return (
-    <div className="bg-gray-100 rounded-lg shadow-lg p-8">
-      <div className="flex justify-center mb-6">
+    <div>
+      <div className="flex justify-center mb-4">
         <img
           src={userData.avatar}
           alt={userData.full_name}
@@ -90,12 +86,7 @@ function Profile() {
           </div>
         )}
       </h2>
-
-      <hr className="my-4" />
-      <div className="text-gray-700">
-        <h3 className="text-xl font-semibold mb-2">About Me</h3>
-        <p>{userData.about}</p>
-      </div>
+      <Favorite />
     </div>
   );
 }

@@ -9,7 +9,7 @@ import Signup from "./pages/Auth/Signup";
 import EmailVerification from "./components/Verification/EmailVerification";
 import BookDetails from "./components/Book/BookDetails";
 import Cart from "./components/Cart/Cart";
-import Favorite from "./components/Favorite/Favorite";
+// import Favorite from "./components/Favorite/Favorite";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -50,7 +50,7 @@ function App() {
           {/* Route related to user profile */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/wish-list" element={<Favorite />} />
+          {/* <Route path="/wish-list" element={<Favorite />} /> */}
           <Route path="/book/:title" element={<BookDetails books={books} />} />
         </Routes>
       </div>
