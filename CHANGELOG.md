@@ -1,3 +1,12 @@
+## [1.24.2](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.1...v1.24.2) (2023-09-19)
+
+
+### Bug Fixes
+
+* Add dynamic domain ([7f27596](https://github.com/hossainchisty/LeafLine-Client/commit/7f2759653049240adc2330ad1ca3450da312fccc))
+
+
+
 ## [1.24.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.0...v1.24.1) (2023-09-19)
 
 
@@ -36,15 +45,6 @@
 ### Bug Fixes
 
 * resolve path to the file ([dba1625](https://github.com/hossainchisty/LeafLine-Client/commit/dba162542e23ced1a640ee0487d8475a26692b51))
-
-
-
-# [1.22.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.21.0...v1.22.0) (2023-09-13)
-
-
-### Features
-
-* Introduce redux for state management ([51078a4](https://github.com/hossainchisty/LeafLine-Client/commit/51078a4066209024f7d638e9eae805adcb45e029))
 
 
 
