@@ -1,3 +1,12 @@
+# [1.25.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.2...v1.25.0) (2023-09-19)
+
+
+### Features
+
+* Added password reset UI ([acf0e0d](https://github.com/hossainchisty/LeafLine-Client/commit/acf0e0dd9649399a2be18143dc3ae5f9f5658965))
+
+
+
 ## [1.24.2](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.1...v1.24.2) (2023-09-19)
 
 
@@ -36,15 +45,6 @@
 ### Performance Improvements
 
 * Here's a high-level overview of how optimistic updates could be implemented: ([fa9d5cb](https://github.com/hossainchisty/LeafLine-Client/commit/fa9d5cbbddd05486a6a4cfc7555b0163c733e8d2))
-
-
-
-## [1.22.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.22.0...v1.22.1) (2023-09-16)
-
-
-### Bug Fixes
-
-* resolve path to the file ([dba1625](https://github.com/hossainchisty/LeafLine-Client/commit/dba162542e23ced1a640ee0487d8475a26692b51))
 
 
 
