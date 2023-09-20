@@ -2,13 +2,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-// import { useDispatch } from "react-redux";
-// import { setUserInfo } from "../../store/userSlice";
 import { storeToken } from "../../utils/Token";
 
 const Signin = () => {
-  // const dispatch = useDispatch();
-
   const {
     register,
     handleSubmit,
@@ -21,7 +17,6 @@ const Signin = () => {
     try {
       const response = await fetch(`${apiBaseDomain}/users/login`, {
         method: "POST",
-        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

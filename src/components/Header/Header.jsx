@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { clearToken } from "../../utils/Token";
-// import { FaHeart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa";
 
 const Header = ({ setSearchResults }) => {
@@ -39,7 +38,6 @@ const Header = ({ setSearchResults }) => {
 
   function logout() {
     fetch(`${apiBaseDomain}/users/logout`, {
-      credentials: "include",
       method: "POST",
     }).then(() => {
       clearToken();
