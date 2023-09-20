@@ -10,7 +10,8 @@ import EmailVerification from "./components/Verification/EmailVerification";
 import BookDetails from "./components/Book/BookDetails";
 import Cart from "./components/Cart/Cart";
 import PasswordReset from "./pages/Auth/PasswordReset";
-// import Favorite from "./components/Favorite/Favorite";
+
+import { CartItemCountProvider } from "./context/CartItemCountContext";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -29,37 +30,42 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <Header setSearchResults={setSearchResults} />
-      <div className="container mx-auto p-4">
-        <Routes>
-          {/* Route related to book searching and browsing */}
-          <Route
-            path="/"
-            element={
-              <BookList
-                books={searchResults.length > 0 ? searchResults : books}
-              />
-            }
-          />
+    <CartItemCountProvider>
+      <div>
+        <Header setSearchResults={setSearchResults} />
+        <div className="container mx-auto p-4">
+          <Routes>
+            {/* Route related to book searching and browsing */}
+            <Route
+              path="/"
+              element={
+                <BookList
+                  books={searchResults.length > 0 ? searchResults : books}
+                />
+              }
+            />
 
-          {/* Route related to authentication */}
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/verify-email/:token" element={<EmailVerification />} />
+            {/* Route related to authentication */}
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route
+              path="/verify-email/:token"
+              element={<EmailVerification />}
+            />
 
-          {/* Route related to user profile */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/cart" element={<Cart />} />
-          {/* <Route path="/wish-list" element={<Favorite />} /> */}
-          <Route
-            path="/book/:productId"
-            element={<BookDetails books={books} />}
-          />
-          <Route path="/forget-password" element={<PasswordReset />} />
-        </Routes>
+            {/* Route related to user profile */}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            {/* <Route path="/wish-list" element={<Favorite />} /> */}
+            <Route
+              path="/book/:productId"
+              element={<BookDetails books={books} />}
+            />
+            <Route path="/forget-password" element={<PasswordReset />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </CartItemCountProvider>
   );
 }
 

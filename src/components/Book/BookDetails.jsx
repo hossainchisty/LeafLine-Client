@@ -5,8 +5,10 @@ import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import Star from "./Star";
 import toast from "react-hot-toast";
+import { useCartItemCount } from "../../context/CartItemCountContext";
 
 const BookDetails = ({ books }) => {
+  const { incrementItemCount } = useCartItemCount();
   const [cart, setCart] = useState([]);
   const { productId } = useParams();
 
@@ -37,7 +39,6 @@ const BookDetails = ({ books }) => {
       const existingCart = existingCartData ? JSON.parse(existingCartData) : [];
       const updatedCart = [...existingCart, newItem];
       localStorage.setItem("cart", JSON.stringify(updatedCart));
-      toast.success("Cart added successfully");
     } else {
       // For logged-in users, send the item to the server
       const newItem = { productId, quantity };
@@ -52,7 +53,7 @@ const BookDetails = ({ books }) => {
       })
         .then((response) => {
           if (response.ok) {
-            toast.success("Cart added successfully");
+            incrementItemCount();
           } else {
             toast.error("Failed to add to cart");
           }

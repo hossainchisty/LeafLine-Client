@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useCartItemCount } from "../../context/CartItemCountContext";
 
 const Cart = () => {
+  const { decrementItemCount } = useCartItemCount();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const getToken = localStorage.getItem("userInfo");
@@ -43,6 +45,7 @@ const Cart = () => {
         const updatedCartItems = cartItems.filter(
           (item) => item.productId._id !== productId
         );
+        decrementItemCount();
         setCartItems(updatedCartItems);
       })
       .catch((error) => {
