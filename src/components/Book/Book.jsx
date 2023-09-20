@@ -41,7 +41,7 @@ const Book = ({ book }) => {
       />
       <div className="flex flex-col p-4 space-y-2">
         <Featured featured={featured} id={_id} />
-        <Link to={`/book/${title}`}>
+        <Link to={`/book/${_id}`}>
           <h4 className="text-lg font-semibold">{title}</h4>
         </Link>
 

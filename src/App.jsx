@@ -52,7 +52,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
           {/* <Route path="/wish-list" element={<Favorite />} /> */}
-          <Route path="/book/:title" element={<BookDetails books={books} />} />
+          <Route
+            path="/book/:productId"
+            element={<BookDetails books={books} />}
+          />
           <Route path="/forget-password" element={<PasswordReset />} />
         </Routes>
       </div>

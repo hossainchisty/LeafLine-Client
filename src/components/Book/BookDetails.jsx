@@ -1,13 +1,77 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Star from "./Star";
+import toast from "react-hot-toast";
 
 const BookDetails = ({ books }) => {
-  const { title } = useParams();
-  // Find the book with the matching title
-  const book = books.find((book) => book.title === title);
+  const [cart, setCart] = useState([]);
+  const { productId } = useParams();
 
-  const { author, thumbnail, price, rating, description } = book;
+  // Check if the book exists before proceeding
+  const book = books.find(
+    (book) => book._id.toString() === productId.toString()
+  );
+
+  if (!book) {
+    return <div>Book not found</div>;
+  }
+
+  const { title, author, thumbnail, price, rating, description } = book;
+
+  const getToken = localStorage.getItem("userInfo");
+  const token = getToken ? getToken.replace(/["']/g, "") : "";
+  const isLoggedIn = !!token;
+
+  const addToCart = () => {
+    const quantity = 1; // Quantity
+
+    if (!isLoggedIn) {
+      // For anonymous users, store the item in local storage
+      const newItem = { productId, quantity, title, author, thumbnail, price };
+      setCart([...cart, newItem]);
+
+      const existingCartData = localStorage.getItem("cart");
+      const existingCart = existingCartData ? JSON.parse(existingCartData) : [];
+      const updatedCart = [...existingCart, newItem];
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      toast.success("Cart added successfully");
+    } else {
+      // For logged-in users, send the item to the server
+      const newItem = { productId, quantity };
+
+      fetch("http://localhost:8000/api/v1/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newItem), // Include productId and quantity
+      })
+        .then((response) => {
+          if (response.ok) {
+            toast.success("Cart added successfully");
+          } else {
+            toast.error("Failed to add to cart");
+          }
+        })
+        .catch((error) => {
+          console.error("Error adding to cart:", error);
+          toast.error("Failed to add to cart");
+        });
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const existingCartData = localStorage.getItem("cart");
+      if (existingCartData) {
+        setCart(JSON.parse(existingCartData));
+      }
+    }
+  }, []);
 
   return (
     <div className="flex rounded-lg shadow-lg overflow-hidden">
@@ -20,19 +84,13 @@ const BookDetails = ({ books }) => {
           ))}
         </div>
         <p className="text-gray-600">
-          by{" "}
-          <Link>
-            <span className="text-blue-400">{author}</span>
-          </Link>
+          by <span className="text-blue-400">{author}</span>
         </p>
         <p className="text-blue-600 font-semibold text-xl">BDT {price}</p>
         <p className="text-gray-700">{description}</p>
         <button
           className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-semibold"
-          onClick={() => {
-            // Handle the add to cart functionality here
-            // You can dispatch an action or update the cart state
-          }}
+          onClick={addToCart}
         >
           Add to Cart
         </button>
@@ -44,12 +102,11 @@ const BookDetails = ({ books }) => {
 BookDetails.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
+      _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
       thumbnail: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
-      featured: PropTypes.bool.isRequired,
-      id: PropTypes.number.isRequired,
       rating: PropTypes.number.isRequired,
       description: PropTypes.string.isRequired,
     })

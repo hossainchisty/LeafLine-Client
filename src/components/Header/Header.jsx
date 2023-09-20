@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { clearToken } from "../../utils/Token";
-import { FaCartPlus } from "react-icons/fa";
+import CartCounter from "../Cart/CartCounter";
 
 const Header = ({ setSearchResults }) => {
   // State and Hooks
@@ -76,10 +76,7 @@ const Header = ({ setSearchResults }) => {
             </div> */}
             <div className="text-3xl">
               <Link to="/cart" className="relative">
-                <FaCartPlus className="mr-3" />
-                <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full h-5 w-5 flex items-center justify-center text-xs">
-                  50
-                </span>
+                <CartCounter />
               </Link>
             </div>
             <div className="ml-2">
