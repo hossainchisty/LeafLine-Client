@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useCartItemCount } from "../../context/CartItemCountContext";
 
@@ -7,9 +8,10 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const getToken = localStorage.getItem("userInfo");
   const token = getToken ? getToken.replace(/["']/g, "") : "";
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/cart/", {
+    fetch(`${apiBaseDomain}/cart/`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -33,7 +35,7 @@ const Cart = () => {
   }, [cartItems]);
 
   const handleRemoveItem = (productId) => {
-    fetch(`http://localhost:8000/api/v1/cart/remove/${productId}`, {
+    fetch(`${apiBaseDomain}/cart/remove/${productId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

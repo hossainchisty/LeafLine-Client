@@ -26,6 +26,7 @@ const BookDetails = ({ books }) => {
   const getToken = localStorage.getItem("userInfo");
   const token = getToken ? getToken.replace(/["']/g, "") : "";
   const isLoggedIn = !!token;
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   const addToCart = () => {
     const quantity = 1; // Quantity
@@ -43,7 +44,7 @@ const BookDetails = ({ books }) => {
       // For logged-in users, send the item to the server
       const newItem = { productId, quantity };
 
-      fetch("http://localhost:8000/api/v1/cart/add", {
+      fetch(`${apiBaseDomain}/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
