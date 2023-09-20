@@ -1,3 +1,12 @@
+# [1.27.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.26.1...v1.27.0) (2023-09-20)
+
+
+### Features
+
+* Improve Add to Cart functionality ([2a943dd](https://github.com/hossainchisty/LeafLine-Client/commit/2a943dda152decbc90d84fb286cc1941d49ccb72))
+
+
+
 ## [1.26.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.26.0...v1.26.1) (2023-09-20)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Add dynamic domain ([7f27596](https://github.com/hossainchisty/LeafLine-Client/commit/7f2759653049240adc2330ad1ca3450da312fccc))
-
-
-
-## [1.24.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.0...v1.24.1) (2023-09-19)
-
-
-### Bug Fixes
-
-* Added env domain path ([b261ef9](https://github.com/hossainchisty/LeafLine-Client/commit/b261ef982e02f384e78dd22651f63dc192a3adde))
 
 
 
