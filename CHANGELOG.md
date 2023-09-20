@@ -1,3 +1,12 @@
+## [1.26.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.26.0...v1.26.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* Access-Control-Allow-Origin blocked by CORS policy ([12706ee](https://github.com/hossainchisty/LeafLine-Client/commit/12706ee2a6f7aa6d23834a1a6ea6f86ae78d2724))
+
+
+
 # [1.26.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.25.0...v1.26.0) (2023-09-19)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Added env domain path ([b261ef9](https://github.com/hossainchisty/LeafLine-Client/commit/b261ef982e02f384e78dd22651f63dc192a3adde))
-
-
-
-# [1.24.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.23.0...v1.24.0) (2023-09-19)
-
-
-### Features
-
-* New feature add to wishlist ([0d2fea3](https://github.com/hossainchisty/LeafLine-Client/commit/0d2fea340a31cbbd52dd8537f3133efe27eac0a7))
 
 
 
