@@ -80,7 +80,11 @@ const Book = ({ book }) => {
               Went to read{" "}
             </p>
           </button>
-          {showMessage && <p className="text-red-500">Sign up to use</p>}
+          {showMessage && (
+            <>
+              <p className="text-red-500 text-sm">Sign up to use</p>
+            </>
+          )}
         </div>
       </div>
     </div>
