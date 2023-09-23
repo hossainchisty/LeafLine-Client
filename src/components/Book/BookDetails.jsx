@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Star from "./Star";
 import toast from "react-hot-toast";
 import { useCartItemCount } from "../../context/CartItemCountContext";
@@ -11,6 +11,7 @@ const BookDetails = ({ books }) => {
   const { incrementItemCount } = useCartItemCount();
   const [cart, setCart] = useState([]);
   const { productId } = useParams();
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   // Check if the book exists before proceeding
   const book = books.find(
@@ -21,7 +22,19 @@ const BookDetails = ({ books }) => {
     return <div>Book not found</div>;
   }
 
-  const { title, author, thumbnail, price, rating, description } = book;
+  const {
+    title,
+    author,
+    thumbnail,
+    price,
+    rating,
+    description,
+    publishYear,
+    publisher,
+    ISBN,
+    pages,
+    language,
+  } = book;
 
   const getToken = localStorage.getItem("userInfo");
   const token = getToken ? getToken.replace(/["']/g, "") : "";
@@ -33,7 +46,14 @@ const BookDetails = ({ books }) => {
 
     if (!isLoggedIn) {
       // For anonymous users, store the item in local storage
-      const newItem = { productId, quantity, title, author, thumbnail, price };
+      const newItem = {
+        productId,
+        quantity,
+        title,
+        author,
+        thumbnail,
+        price,
+      };
       setCart([...cart, newItem]);
 
       const existingCartData = localStorage.getItem("cart");
@@ -86,10 +106,63 @@ const BookDetails = ({ books }) => {
           ))}
         </div>
         <p className="text-gray-600">
-          by <span className="text-blue-400">{author}</span>
+          <Link to={`/author/${author}`}>
+            <span className="text-blue-400">{author}</span>
+          </Link>{" "}
+          — <span className="text-gray-600">{publishYear}</span>
         </p>
         <p className="text-blue-600 font-semibold text-xl">BDT {price}</p>
-        <p className="text-gray-700">{description}</p>
+        <div>
+          {description &&
+          typeof description === "string" &&
+          description.length > 350 ? (
+            <>
+              {showFullDescription ? (
+                <div className="text-gray-700">
+                  <p className="mb-5">{description}</p>
+                  <p className="mb-2">
+                    <span className="text-black font-semibold">ISBN:</span>{" "}
+                    {ISBN}
+                    <br />
+                    <span className="text-black font-semibold">
+                      Edition Language:
+                    </span>{" "}
+                    {language}
+                    <br />
+                    <span className="text-black font-semibold">
+                      Pages:
+                    </span>{" "}
+                    {pages}
+                    <br />
+                    <span className="text-black font-semibold">
+                      Publisher:
+                    </span>{" "}
+                    {publisher}
+                    <br />
+                    <span className="text-black font-semibold">
+                      Edition release date:
+                    </span>{" "}
+                    {publishYear}
+                    <br />
+                  </p>
+                </div>
+              ) : (
+                <p className="text-gray-700">
+                  {description.substring(0, 350)}...
+                </p>
+              )}
+              <button
+                className="text-blue-700  hover:underline"
+                onClick={() => setShowFullDescription(!showFullDescription)}
+              >
+                {showFullDescription ? "Show Less" : "Show More"}
+              </button>
+            </>
+          ) : (
+            <p className="text-gray-700">{description}</p>
+          )}
+        </div>
+
         <button
           className="bg-yellow-400 text-black px-4 py-2 rounded-md text-sm font-semibold"
           onClick={addToCart}
