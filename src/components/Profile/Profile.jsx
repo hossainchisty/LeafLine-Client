@@ -91,6 +91,9 @@ function Profile() {
             </svg>
           )}
         </div>
+        <p className="text-gray-700 text-sm font-thin from-neutral-500 mb-10">
+          {userData.bio}
+        </p>
       </h2>
       <Favorite />
     </div>
