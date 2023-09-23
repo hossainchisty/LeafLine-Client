@@ -12,6 +12,7 @@ import Cart from "./components/Cart/Cart";
 import PasswordReset from "./pages/Auth/PasswordReset";
 
 import { CartItemCountProvider } from "./context/CartItemCountContext";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -64,6 +65,7 @@ function App() {
             <Route path="/forget-password" element={<PasswordReset />} />
           </Routes>
         </div>
+        <Footer />
       </div>
     </CartItemCountProvider>
   );
