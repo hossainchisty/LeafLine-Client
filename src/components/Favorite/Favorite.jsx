@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 
 const Favorite = () => {
@@ -79,7 +80,71 @@ const Favorite = () => {
   return (
     <div className="mx-auto max-w-2xl sm:px-6 lg:max-w-7xl lg:px-8">
       <h3 className="text-xl font-semibold mb-2 text-black">My Wishlist</h3>
-      <p>You have {favoriteBooks.length} product(s) in your wishlist</p>
+      <p>You have {favoriteBooks.length} book(s) in your wishlist</p>
+      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        {favoriteBooks.map((book) => (
+          <div key={book._id} className="group relative">
+            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80">
+              <img
+                src={book.thumbnail}
+                alt={book.title}
+                className="h-full w-full object-cover lg:h-full lg:w-full"
+              />
+            </div>
+            <div className="mt-4 flex justify-between">
+              <div>
+                <h3 className="text-sm text-gray-700">{book.title}</h3>
+              </div>
+              <p className="text-sm font-medium text-gray-900">
+                BDT {book.price}
+              </p>
+            </div>
+            <div className="flex items-center mt-5">
+              <button
+                className="bg-gray-100 p-1 w-full text-center rounded-lg hover:bg-gray-300 cursor-pointer"
+                onClick={() => openRemoveModal(book._id)}
+              >
+                Remove
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+      {isRemoveModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center">
+          <div className="bg-white p-4 rounded-lg shadow-xl max-w-md w-full">
+            <div className="p-4 backdrop-blur-lg rounded-lg">
+              <h2 className="text-xl font-semibold mb-4">
+                Remove Book from Favorites
+              </h2>
+              <p className="mb-4">
+                Are you sure you want to remove this book from your favorites?
+              </p>
+              <div className="flex justify-center space-x-4">
+                <button
+                  className="text-gray-700 hover:text-red-700 text-sm font-semibold"
+                  onClick={() => {
+                    removeBook();
+                    closeRemoveModal();
+                  }}
+                >
+                  Confirm
+                </button>
+                <button
+                  className="text-gray-700 hover:text-green-500 text-sm font-semibold"
+                  onClick={closeRemoveModal}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <h3 className="text-xl font-semibold mb-2 text-black mt-10">Finished</h3>
+      {/* TODO: it should show book when only one book then when it increse it should be books */}
+      <p>{favoriteBooks.length} books</p>
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {favoriteBooks.map((book) => (
           <div key={book._id} className="group relative">
