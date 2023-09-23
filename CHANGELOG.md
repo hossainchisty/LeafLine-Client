@@ -1,3 +1,21 @@
+# [1.29.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.28.0...v1.29.0) (2023-09-23)
+
+
+### Bug Fixes
+
+* only verified user can get badge ([1f3ff5a](https://github.com/hossainchisty/LeafLine-Client/commit/1f3ff5aa1213f5ae8bcb23cbfcbd6697218bc89f))
+
+
+### Features
+
+* Addon bio of users ([e7a214c](https://github.com/hossainchisty/LeafLine-Client/commit/e7a214c652cb4b6d58134ded912b7770a329db83))
+* Addon footer ([cf05aab](https://github.com/hossainchisty/LeafLine-Client/commit/cf05aabfe233adf0f525bf730297308c6e269068))
+* Addon loading more UX friendly ([3ccee0a](https://github.com/hossainchisty/LeafLine-Client/commit/3ccee0a9f4bafdf7443d477e6e3370bf66ef3035))
+* Addon message for unauthorize users ([11714e3](https://github.com/hossainchisty/LeafLine-Client/commit/11714e3f058c00174294450b514942e7c700ed96))
+* Addon more details of book ([19b4c31](https://github.com/hossainchisty/LeafLine-Client/commit/19b4c314ae9cd5bb3cef0100662a5d86e657d83f))
+
+
+
 # [1.28.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.27.0...v1.28.0) (2023-09-23)
 
 
@@ -31,15 +49,6 @@
 ### Features
 
 * Improve UI of star of reviews ([b3da6cf](https://github.com/hossainchisty/LeafLine-Client/commit/b3da6cf9a1f1e2c7d8f6b6384df3030de68fd7b7))
-
-
-
-# [1.25.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.2...v1.25.0) (2023-09-19)
-
-
-### Features
-
-* Added password reset UI ([acf0e0d](https://github.com/hossainchisty/LeafLine-Client/commit/acf0e0dd9649399a2be18143dc3ae5f9f5658965))
 
 
 
