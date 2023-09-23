@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Featured from "./Featured/Featured";
@@ -6,6 +7,7 @@ import { toast } from "react-hot-toast";
 import Star from "./Star";
 
 const Book = ({ book }) => {
+  const [showMessage, setShowMessage] = useState(false);
   const { title, author, thumbnail, price, featured, rating, _id } = book;
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
@@ -13,6 +15,12 @@ const Book = ({ book }) => {
     try {
       const getToken = localStorage.getItem("userInfo");
       const token = getToken ? getToken.replace(/["']/g, "") : "";
+
+      if (!token) {
+        // If the user is not authenticated, show a message and prevent the API call
+        setShowMessage(true);
+        return;
+      }
 
       const response = await fetch(`${apiBaseDomain}/wishlist/add`, {
         method: "POST",
@@ -61,15 +69,18 @@ const Book = ({ book }) => {
           {/* Wishlist Icon/Button */}
           <button
             className="text-black hover:text-green-500 text-xs font-semibold"
-            onClick={addToWishlist}
+            onClick={() => {
+              addToWishlist();
+            }}
           >
             <p className="flex items-center">
               <span className="pr-1">
                 <FaRegHeart />
               </span>
-              Add to Booklist{" "}
+              Went to read{" "}
             </p>
           </button>
+          {showMessage && <p className="text-red-500">Sign up to use</p>}
         </div>
       </div>
     </div>
@@ -87,4 +98,5 @@ Book.propTypes = {
     rating: PropTypes.number.isRequired,
   }).isRequired,
 };
+
 export default Book;
