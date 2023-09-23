@@ -112,7 +112,7 @@ const Header = ({ setSearchResults }) => {
         <div className="mt-3 md:flex md:items-center md:justify-center">
           <input
             type="text"
-            placeholder="Search books..."
+            placeholder="Search for books, authors..."
             className="w-full md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black"
             value={searchTerm}
             onChange={handleChange}
