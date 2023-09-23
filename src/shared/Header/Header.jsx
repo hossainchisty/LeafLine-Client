@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { clearToken } from "../../utils/Token";
-import CartCounter from "../Cart/CartCounter";
+import CartCounter from "../../components/Cart/CartCounter";
 
 const Header = ({ setSearchResults }) => {
   // State and Hooks

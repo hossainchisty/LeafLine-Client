@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header/Header";
+import Header from "./shared/Header/Header";
 import BookList from "./components/Book/BookList";
 import Profile from "./components/Profile/Profile";
 import Signin from "./pages/Auth/Signin";
@@ -12,7 +12,7 @@ import Cart from "./components/Cart/Cart";
 import PasswordReset from "./pages/Auth/PasswordReset";
 
 import { CartItemCountProvider } from "./context/CartItemCountContext";
-import Footer from "./components/Footer/Footer";
+import Footer from "./shared/Footer/Footer";
 
 function App() {
   const [books, setBooks] = useState([]);
