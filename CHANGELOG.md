@@ -1,3 +1,12 @@
+# [1.28.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.27.0...v1.28.0) (2023-09-23)
+
+
+### Features
+
+* Improve verification badge ([ce31de7](https://github.com/hossainchisty/LeafLine-Client/commit/ce31de7599d7ce391f143098bb205c369ac86775))
+
+
+
 # [1.27.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.26.1...v1.27.0) (2023-09-20)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Added password reset UI ([acf0e0d](https://github.com/hossainchisty/LeafLine-Client/commit/acf0e0dd9649399a2be18143dc3ae5f9f5658965))
-
-
-
-## [1.24.2](https://github.com/hossainchisty/LeafLine-Client/compare/v1.24.1...v1.24.2) (2023-09-19)
-
-
-### Bug Fixes
-
-* Add dynamic domain ([7f27596](https://github.com/hossainchisty/LeafLine-Client/commit/7f2759653049240adc2330ad1ca3450da312fccc))
 
 
 
