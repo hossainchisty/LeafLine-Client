@@ -16,17 +16,21 @@ import Footer from "./shared/Footer/Footer";
 
 function App() {
   const [books, setBooks] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(`${apiBaseDomain}/books/list`)
       .then((response) => response.json())
       .then((data) => {
         setBooks(data.data.books);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching book data:", error);
+        setIsLoading(false);
       });
   }, []);
 
@@ -34,6 +38,7 @@ function App() {
     <CartItemCountProvider>
       <div>
         <Header setSearchResults={setSearchResults} />
+
         <div className="container mx-auto p-4">
           <Routes>
             {/* Route related to book searching and browsing */}
@@ -42,6 +47,7 @@ function App() {
               element={
                 <BookList
                   books={searchResults.length > 0 ? searchResults : books}
+                  isLoading={isLoading}
                 />
               }
             />
