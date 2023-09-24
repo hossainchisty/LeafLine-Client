@@ -10,9 +10,16 @@ import EmailVerification from "./components/Verification/EmailVerification";
 import BookDetails from "./components/Book/BookDetails";
 import Cart from "./components/Cart/Cart";
 import PasswordReset from "./pages/Auth/PasswordReset";
-
 import { CartItemCountProvider } from "./context/CartItemCountContext";
 import Footer from "./shared/Footer/Footer";
+import CheckoutForm from "./pages/Payment/CheckoutForm";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentSuccess from "./pages/Payment/PaymentSuccess";
+
+// Load Stripe API key
+const stripe_key = import.meta.env.VITE_STRIPE_API_KEY;
+const stripePromise = loadStripe(`${stripe_key}`);
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -69,11 +76,24 @@ function App() {
               element={<BookDetails books={books} />}
             />
             <Route path="/forget-password" element={<PasswordReset />} />
+
+            {/* Route for placing an order */}
+            <Route path="/place-order" element={<CheckoutFormWrapper />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
           </Routes>
         </div>
         <Footer />
       </div>
     </CartItemCountProvider>
+  );
+}
+
+// Wrapper component for the route that includes Stripe elements
+function CheckoutFormWrapper() {
+  return (
+    <Elements stripe={stripePromise}>
+      <CheckoutForm />
+    </Elements>
   );
 }
 

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useCartItemCount } from "../../context/CartItemCountContext";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { decrementItemCount } = useCartItemCount();
@@ -139,8 +140,8 @@ const Cart = () => {
               </div>
             </div>
             <hr className="my-4" />
-            <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">
-              Check out
+            <button className="mt-4 mb-4 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+              <Link to="/place-order/">Check out</Link>
             </button>
           </div>
         </div>
