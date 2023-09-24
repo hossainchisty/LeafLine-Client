@@ -84,7 +84,7 @@ const Signup = () => {
                   required: true,
                   maxLength: 50, // Maximum length of 50 characters
                 })}
-                className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-500"
+                className="mt-1 p-2 w-full border rounded-md shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 required
               />
               {errors.full_name && errors.full_name.type === "required" && (
@@ -113,7 +113,7 @@ const Signup = () => {
                   required: true,
                   pattern: /^\S+@\S+$/i, // Email format validation
                 })}
-                className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-500"
+                className="mt-1 p-2 w-full border rounded-md shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 required
               />
               {errors.email && errors.email.type === "required" && (
@@ -140,7 +140,7 @@ const Signup = () => {
                   required: true,
                   minLength: 4, // Minimum password length of 4 characters
                 })}
-                className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-500"
+                className="mt-1 p-2 w-full border rounded-md shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 required
               />
               {errors.password && errors.password.type === "required" && (

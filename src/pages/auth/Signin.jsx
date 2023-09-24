@@ -65,7 +65,7 @@ const Signin = () => {
                   message: "Invalid email format",
                 },
               })}
-              className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-500"
+              className="mt-1 p-2 w-full border rounded-md shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               required
             />
             <div className="text-red-600 text-sm">
@@ -90,7 +90,7 @@ const Signin = () => {
                   message: "Password must be at least 4 characters long",
                 },
               })}
-              className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-500"
+              className="mt-1 p-2 w-full border rounded-md shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
               required
             />
             <div className="text-red-600 text-sm">
