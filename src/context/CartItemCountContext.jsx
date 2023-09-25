@@ -1,5 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const CartItemCountContext = createContext();
 
@@ -16,6 +17,19 @@ export const CartItemCountProvider = ({ children }) => {
     }
   };
 
+  // Use local storage to persist the cart item count
+  useEffect(() => {
+    const storedCount = localStorage.getItem("cartItemCount");
+    if (storedCount !== null) {
+      setCartItemCount(parseInt(storedCount, 10));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Update local storage whenever the count changes
+    localStorage.setItem("cartItemCount", cartItemCount.toString());
+  }, [cartItemCount]);
+
   return (
     <CartItemCountContext.Provider
       value={{ cartItemCount, incrementItemCount, decrementItemCount }}
@@ -25,7 +39,6 @@ export const CartItemCountProvider = ({ children }) => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useCartItemCount = () => {
   return useContext(CartItemCountContext);
 };
