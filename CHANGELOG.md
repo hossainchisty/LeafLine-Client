@@ -1,3 +1,18 @@
+# [1.30.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.29.0...v1.30.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* after buy product clear cart items ([fb34458](https://github.com/hossainchisty/LeafLine-Client/commit/fb344588558e03527421abb10a2ae99a33afd012))
+
+
+### Features
+
+* Addon books spinner better UX ([085df72](https://github.com/hossainchisty/LeafLine-Client/commit/085df7245b8347bb68fe9eb4e47476f9597a3d29))
+* User can buy books and pay with stripe ([44a142e](https://github.com/hossainchisty/LeafLine-Client/commit/44a142e234a3980661a0ce48fcaf38c429d73443))
+
+
+
 # [1.29.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.28.0...v1.29.0) (2023-09-23)
 
 
@@ -40,15 +55,6 @@
 ### Bug Fixes
 
 * Access-Control-Allow-Origin blocked by CORS policy ([12706ee](https://github.com/hossainchisty/LeafLine-Client/commit/12706ee2a6f7aa6d23834a1a6ea6f86ae78d2724))
-
-
-
-# [1.26.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.25.0...v1.26.0) (2023-09-19)
-
-
-### Features
-
-* Improve UI of star of reviews ([b3da6cf](https://github.com/hossainchisty/LeafLine-Client/commit/b3da6cf9a1f1e2c7d8f6b6384df3030de68fd7b7))
 
 
 
