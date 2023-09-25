@@ -4,20 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import toast from "react-hot-toast";
+import { useCartItemCount } from "../../context/CartItemCountContext";
 
 const CheckoutForm = () => {
+  // State and Hooks
+  const stripe = useStripe();
+  const elements = useElements();
   const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState("");
-
   const [address, setAddress] = useState("");
   const [zip, setZip] = useState("");
   const [city, setCity] = useState("");
-
+  const { clearCart } = useCartItemCount();
   const [cartItems, setCartItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [subTotal, setSubTotal] = useState(0);
-  const [shippingFee, setShippingFee] = useState(0);
-  const [totalAmountWithShipping, setTotalAmountWithShipping] = useState(0);
+  const [total, setTotal] = useState(0);
   const getToken = localStorage.getItem("userInfo");
   const token = getToken ? getToken.replace(/["']/g, "") : "";
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
@@ -38,37 +38,26 @@ const CheckoutForm = () => {
       });
   }, [token]);
 
-  function calculateShippingFee(totalOrderValue) {
-    if (totalOrderValue < 500) {
-      return 5.0;
-    } else if (totalOrderValue < 1000) {
-      return 8.0;
-    } else {
-      return 0.0;
-    }
-  }
-
+  // Calculate total whenever cart items change
   useEffect(() => {
     const calculatedTotalPrice = cartItems.reduce(
       (total, item) => total + item.productId.price * item.quantity,
       0
     );
-
-    const shippingFee = calculateShippingFee(calculatedTotalPrice);
-
-    // Calculate the subtotal
-    const subTotal = calculatedTotalPrice;
-
-    const totalAmountWithShipping = subTotal + shippingFee;
-
-    setTotalPrice(calculatedTotalPrice);
-    setSubTotal(subTotal);
-    setShippingFee(shippingFee);
-    setTotalAmountWithShipping(totalAmountWithShipping);
+    setTotal(calculatedTotalPrice);
   }, [cartItems]);
 
-  const stripe = useStripe();
-  const elements = useElements();
+  const deleteCart = async () => {
+    fetch(`${apiBaseDomain}/cart/remove-all`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).catch((error) => {
+      console.error("Error fetching client secret:", error);
+    });
+  };
 
   const handlePayment = async () => {
     const orderData = {
@@ -79,7 +68,7 @@ const CheckoutForm = () => {
         itemName: item.productId.title,
         quantity: item.quantity,
       })),
-      totalAmount: totalAmountWithShipping,
+      totalAmount: total,
     };
 
     await fetch(`${apiBaseDomain}/order/charge/create-order`, {
@@ -125,6 +114,8 @@ const CheckoutForm = () => {
       }
 
       if (paymentIntent.status === "succeeded") {
+        clearCart();
+        deleteCart();
         toast.success("Congrats! Your Payment is Completed");
         navigate("/payment-success");
       }
@@ -135,14 +126,10 @@ const CheckoutForm = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32"></div>
+      <div className="flex flex-col items-center py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32"></div>
       <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-        <div className="px-4 pt-8">
+        <div className="px-4">
           <p className="text-xl font-medium">Order Summary</p>
-          <p className="text-gray-400">
-            Check your items. And select a suitable shipping method.
-          </p>
-
           {cartItems.map((item) => (
             <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
               <div className="flex flex-col rounded-lg bg-white sm:flex-row">
@@ -222,29 +209,11 @@ const CheckoutForm = () => {
                 placeholder="ZIP"
               />
             </div>
-            {/* Subtotal */}
-            <div className="mt-6  py-2">
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-gray-900">Subtotal</p>
-                <p className="font-semibold text-gray-900">
-                  BDT {subTotal.toFixed(2)}
-                </p>
-              </div>
-            </div>
-            {/* Shipping */}
-            <div className="mt-2 py-2">
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-gray-900">Shipping</p>
-                <p className="font-semibold text-gray-900">
-                  BDT {shippingFee.toFixed(2)}
-                </p>
-              </div>
-            </div>
             {/* Total */}
             <div className="mt-4 flex items-center justify-between">
               <p className="text-sm font-medium text-gray-900">Total</p>
               <p className="text-2xl font-semibold text-gray-900">
-                BDT {totalPrice.toFixed(2)}
+                BDT {total.toFixed(2)}
               </p>
             </div>
           </div>

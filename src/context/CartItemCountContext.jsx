@@ -17,6 +17,12 @@ export const CartItemCountProvider = ({ children }) => {
     }
   };
 
+  const clearCart = () => {
+    // Add logic here to clear the cart, e.g., remove items from cart state
+    // and any other cart-related data in your application.
+    setCartItemCount(0); // Reset the cart item count to 0
+  };
+
   // Use local storage to persist the cart item count
   useEffect(() => {
     const storedCount = localStorage.getItem("cartItemCount");
@@ -32,7 +38,12 @@ export const CartItemCountProvider = ({ children }) => {
 
   return (
     <CartItemCountContext.Provider
-      value={{ cartItemCount, incrementItemCount, decrementItemCount }}
+      value={{
+        cartItemCount,
+        incrementItemCount,
+        decrementItemCount,
+        clearCart,
+      }}
     >
       {children}
     </CartItemCountContext.Provider>

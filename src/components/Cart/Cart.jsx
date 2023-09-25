@@ -140,9 +140,9 @@ const Cart = () => {
               </div>
             </div>
             <hr className="my-4" />
-            <button className="mt-4 mb-4 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+            <div className="mt-4 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white text-center">
               <Link to="/place-order/">Check out</Link>
-            </button>
+            </div>
           </div>
         </div>
       </div>
