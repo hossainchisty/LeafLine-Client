@@ -6,6 +6,12 @@ import { useParams, Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useCartItemCount } from "../../context/CartItemCountContext";
 import Review from "../Review/Review";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheck,
+  // faClipboard,
+  // faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 const BookDetails = ({ books }) => {
   const { incrementItemCount } = useCartItemCount();
@@ -34,6 +40,8 @@ const BookDetails = ({ books }) => {
     ISBN,
     pages,
     language,
+    genre,
+    stock,
   } = book;
 
   const getToken = localStorage.getItem("userInfo");
@@ -49,10 +57,6 @@ const BookDetails = ({ books }) => {
       const newItem = {
         productId,
         quantity,
-        title,
-        author,
-        thumbnail,
-        price,
       };
       setCart([...cart, newItem]);
 
@@ -151,11 +155,25 @@ const BookDetails = ({ books }) => {
             — <span className="text-gray-600">{publishYear}</span> <br />
             <div className="mt-2">
               <span className="bg-gray-100 text-black text-xs font-medium mr-2 px-2.5 py-0.5 rounded-lg ">
-                Historical Fiction
+                {genre}
               </span>
             </div>
           </p>
           <p className="text-blue-600 font-semibold text-xl">BDT {price}</p>
+          <div className="flex items-left">
+            <FontAwesomeIcon
+              icon={faCheck}
+              className="text-white border bg-green-400 rounded-lg text-xl mr-2"
+            />
+            <div className="text-black font-semibold">
+              <p className="text-sm">In Stock</p>
+              <p className="text-xs mt-1">
+                ({stock.remainingStock}{" "}
+                {stock.remainingStock === 1 ? "copy" : "copies"} available)
+              </p>
+            </div>
+          </div>
+
           <div>
             {description &&
             typeof description === "string" &&

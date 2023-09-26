@@ -30,8 +30,13 @@ const CheckoutForm = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
-        setCartItems(data.cartItems);
+      .then((cartInfo) => {
+        const bookData = cartInfo.cart.items.map((cartItem) => ({
+          ...cartItem.book,
+          quantity: cartItem.quantity,
+          cartId: cartItem._id,
+        }));
+        setCartItems(bookData);
       })
       .catch((error) => {
         console.error("Error fetching cart items:", error);
@@ -41,7 +46,7 @@ const CheckoutForm = () => {
   // Calculate total whenever cart items change
   useEffect(() => {
     const calculatedTotalPrice = cartItems.reduce(
-      (total, item) => total + item.productId.price * item.quantity,
+      (total, item) => total + item.price * item.quantity,
       0
     );
     setTotal(calculatedTotalPrice);
@@ -65,7 +70,7 @@ const CheckoutForm = () => {
       city: city,
       postalCode: zip,
       items: cartItems.map((item) => ({
-        itemName: item.productId.title,
+        itemName: item.title,
         quantity: item.quantity,
       })),
       totalAmount: total,
@@ -135,12 +140,12 @@ const CheckoutForm = () => {
               <div className="flex flex-col rounded-lg bg-white sm:flex-row">
                 <img
                   className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                  src={item.productId.thumbnail}
+                  src={item.thumbnail}
                   alt=""
                 />
                 <div className="flex w-full flex-col px-4 py-4">
-                  <span className="font-semibold">{item.productId.title}</span>
-                  <p className="text-lg font-bold">{item.productId.price}</p>
+                  <span className="font-semibold">{item.title}</span>
+                  <p className="text-lg font-bold">{item.price}</p>
                 </div>
               </div>
             </div>

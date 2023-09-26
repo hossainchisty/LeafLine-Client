@@ -19,8 +19,13 @@ const Cart = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
-        setCartItems(data.cartItems);
+      .then((cartInfo) => {
+        const bookData = cartInfo.cart.items.map((cartItem) => ({
+          ...cartItem.book,
+          quantity: cartItem.quantity,
+          cartId: cartItem._id,
+        }));
+        setCartItems(bookData);
       })
       .catch((error) => {
         console.error("Error fetching cart items:", error);
@@ -29,14 +34,14 @@ const Cart = () => {
 
   useEffect(() => {
     const calculatedTotalPrice = cartItems.reduce(
-      (total, item) => total + item.productId.price * item.quantity,
+      (total, item) => total + item.price * item.quantity,
       0
     );
     setTotalPrice(calculatedTotalPrice);
   }, [cartItems]);
 
-  const handleRemoveItem = (productId) => {
-    fetch(`${apiBaseDomain}/cart/remove/${productId}`, {
+  const handleRemoveItem = (cartId) => {
+    fetch(`${apiBaseDomain}/cart/remove/${cartId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +51,7 @@ const Cart = () => {
       .then((response) => response.json())
       .then(() => {
         const updatedCartItems = cartItems.filter(
-          (item) => item.productId._id !== productId
+          (item) => item.cartId !== cartId
         );
         decrementItemCount();
         setCartItems(updatedCartItems);
@@ -54,6 +59,21 @@ const Cart = () => {
       .catch((error) => {
         console.error("Error removing item from cart:", error);
       });
+  };
+
+  const handleQuantityChange = (cartId, newQuantity) => {
+    // Update the quantity in the cartItems state
+    const updatedCartItems = cartItems.map((item) => {
+      if (item.cartId === cartId) {
+        return {
+          ...item,
+          quantity: newQuantity,
+        };
+      }
+      return item;
+    });
+
+    setCartItems(updatedCartItems);
   };
 
   if (!Array.isArray(cartItems)) {
@@ -67,24 +87,32 @@ const Cart = () => {
         <div className="md:w-2/3 pr-6">
           {cartItems.map((item) => (
             <div
-              key={item.productId._id}
+              key={item._id}
               className="mb-6 rounded-lg bg-white p-6 shadow-md flex items-center justify-between"
             >
               <div className="flex items-center">
                 <img
-                  src={item.productId.thumbnail}
+                  src={item.thumbnail}
                   alt="product-image"
                   className="w-24 h-24 rounded-lg mr-4"
                 />
                 <div>
                   <h2 className="text-lg font-bold text-gray-900">
-                    {item.productId.title}
+                    {item.title}
                   </h2>
                   <div className="mt-4 flex items-center space-x-4">
                     <div className="flex items-center border-gray-100">
                       <span
                         className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                        // onClick={() => handleRemoveItem(item.productId._id)} // Pass product ID
+                        onClick={() => {
+                          // Decrease quantity when the "-" button is clicked
+                          if (item.quantity > 1) {
+                            handleQuantityChange(
+                              item.cartId,
+                              item.quantity - 1
+                            );
+                          }
+                        }}
                       >
                         {" "}
                         -{" "}
@@ -92,19 +120,29 @@ const Cart = () => {
                       <input
                         className="h-8 w-8 border bg-white text-center text-xs outline-none"
                         type="number"
-                        defaultValue={item.quantity}
+                        value={item.quantity}
                         min={1}
+                        onChange={(e) => {
+                          // Update quantity when the input value changes
+                          const newQuantity = parseInt(e.target.value, 10);
+                          if (!isNaN(newQuantity) && newQuantity >= 1) {
+                            handleQuantityChange(item.cartId, newQuantity);
+                          }
+                        }}
                       />
                       <span
                         className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                        // onClick={() => handleRemoveItem(item.productId._id)} // Pass product ID
+                        onClick={() => {
+                          // Increase quantity when the "+" button is clicked
+                          handleQuantityChange(item.cartId, item.quantity + 1);
+                        }}
                       >
                         {" "}
                         +{" "}
                       </span>
                     </div>
                     <div className="flex items-center space-x-4">
-                      <p className="text-sm">BDT {item.productId.price}</p>
+                      <p className="text-sm">BDT {item.price}</p>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -112,7 +150,7 @@ const Cart = () => {
                         strokeWidth="1.5"
                         stroke="currentColor"
                         className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
-                        onClick={() => handleRemoveItem(item.productId._id)} // Pass product ID
+                        onClick={() => handleRemoveItem(item.cartId)}
                       >
                         <path
                           strokeLinecap="round"
