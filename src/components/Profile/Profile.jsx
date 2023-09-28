@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import LoadingIndicator from "./LoadingIndicator";
 import UserProfile from "./UserProfile";
-import { fetchUserProfile } from "../../services/api";
+import { fetchUserProfile } from "../../services/userService";
 
 function Profile() {
   const [userData, setUserData] = useState(null);
