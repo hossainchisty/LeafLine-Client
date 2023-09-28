@@ -1,3 +1,13 @@
+## [2.30.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.30.0...v2.30.1) (2023-09-28)
+
+
+### Performance Improvements
+
+* In this updated version: ([7fadcc5](https://github.com/hossainchisty/LeafLine-Client/commit/7fadcc5d07393bc4f6996d6595a949caabf28287))
+* Modularity: Production-grade components ([7f9b58a](https://github.com/hossainchisty/LeafLine-Client/commit/7f9b58ab60479a2b24d9537d5456de403e740c4f))
+
+
+
 # [1.30.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.29.0...v1.30.0) (2023-09-25)
 
 
@@ -46,15 +56,6 @@
 ### Features
 
 * Improve Add to Cart functionality ([2a943dd](https://github.com/hossainchisty/LeafLine-Client/commit/2a943dda152decbc90d84fb286cc1941d49ccb72))
-
-
-
-## [1.26.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.26.0...v1.26.1) (2023-09-20)
-
-
-### Bug Fixes
-
-* Access-Control-Allow-Origin blocked by CORS policy ([12706ee](https://github.com/hossainchisty/LeafLine-Client/commit/12706ee2a6f7aa6d23834a1a6ea6f86ae78d2724))
 
 
 
