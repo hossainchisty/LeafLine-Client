@@ -31,8 +31,8 @@ function App() {
     setIsLoading(true);
     fetch(`${apiBaseDomain}/books/list`)
       .then((response) => response.json())
-      .then((data) => {
-        setBooks(data.data.books);
+      .then((bookInfo) => {
+        setBooks(bookInfo.data.books);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -53,7 +53,7 @@ function App() {
               path="/"
               element={
                 <BookList
-                  books={searchResults.length > 0 ? searchResults : books}
+                  books={searchResults > 0 ? searchResults : books}
                   isLoading={isLoading}
                 />
               }

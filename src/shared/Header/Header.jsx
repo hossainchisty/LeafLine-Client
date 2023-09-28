@@ -17,7 +17,9 @@ const Header = ({ setSearchResults }) => {
 
   // Handlers
   const handleSearch = (searchTerm) => {
-    fetch(`${apiBaseDomain}/books/book/search?title=${searchTerm}`)
+    fetch(
+      `${apiBaseDomain}/books/book/search?title=${searchTerm}&author=${searchTerm}`
+    )
       .then((response) => response.json())
       .then((data) => {
         setSearchResults(data.data.books);

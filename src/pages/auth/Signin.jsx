@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { storeToken } from "../../utils/Token";
+import { validateEmail, validatePassword } from "../../utils/Validation";
 
 const Signin = () => {
   const {
@@ -12,9 +14,22 @@ const Signin = () => {
   } = useForm();
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (data) => {
+    setIsSubmitting(true);
     try {
+      // Client-side validation
+      if (!validateEmail(data.email)) {
+        toast.error("Invalid email format");
+        return;
+      }
+
+      if (!validatePassword(data.password)) {
+        toast.error("Password must be at least 4 characters long");
+        return;
+      }
+
       const response = await fetch(`${apiBaseDomain}/users/login`, {
         method: "POST",
         headers: {
@@ -26,7 +41,6 @@ const Signin = () => {
       if (response.status === 200) {
         const userData = await response.json();
         storeToken(userData.data.token);
-        // dispatch(setUserInfo(userData));
         navigate("/"); // Redirect to the home page
       } else if (response.status === 403) {
         toast.error("You're not verified, please verify your email address.");
@@ -106,8 +120,9 @@ const Signin = () => {
             <button
               type="submit"
               className="bg-gray-800 text-white px-4 py-2 rounded-md"
+              disabled={isSubmitting}
             >
-              Sign In
+              {isSubmitting ? "Signing..." : "Sign In"}
             </button>
             <div className="flex justify-center mt-4">
               <Link to="/signup" className="text-black">

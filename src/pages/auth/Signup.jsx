@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { registerUser } from "../../services/authService";
 
 const Signup = () => {
   const {
@@ -11,40 +13,30 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const [submittedData, setSubmittedData] = useState(null);
-  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState(null);
 
   const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    setSubmittedEmail(data);
     try {
-      const response = await fetch(`${apiBaseDomain}/users/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await registerUser(data);
 
-      if (response.status === 201) {
-        // Registration successful
-        setIsEmailSent(true);
-        setSubmittedData(data);
-
-        // Display a success toast
+      if (response.success) {
         toast.success(
           "Registration successful. Check your inbox for verification."
         );
-
-        // Add any additional logic here, such as redirecting the user
+        setIsEmailSent(true);
       } else {
-        // Registration failed
-        const errorData = await response.json();
-        toast.error(errorData.message);
+        toast.error(response.error || "Registration failed.");
       }
     } catch (error) {
       console.error("Error registering user:", error);
       toast.error(
         "An error occurred during registration. Please try again later."
       );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -58,7 +50,7 @@ const Signup = () => {
               We are glad that you're with us! We've sent you a verification
               link to the email address{" "}
               <span className="text-black font-semibold">
-                {submittedData?.email}
+                {submittedEmail.email}
               </span>
               .
             </div>
@@ -158,8 +150,9 @@ const Signup = () => {
               <button
                 type="submit"
                 className="bg-gray-800 text-white px-4 py-2 rounded-md"
+                disabled={isSubmitting}
               >
-                Sign Up
+                {isSubmitting ? "Signing Up..." : "Sign Up"}
               </button>
               <div className="flex justify-center mt-4">
                 <Link to="/signin" className="text-black">

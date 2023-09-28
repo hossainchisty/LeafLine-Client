@@ -19,7 +19,10 @@
 
 /* Add this CSS in your stylesheet or within your component's styling */
 @media (max-width: 414px) {
-  .hide-on-small-screen {
+  .main-logo {
+    display: none;
+  }
+  .main-header {
     display: none;
   }
 }
