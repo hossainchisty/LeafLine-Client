@@ -50,7 +50,7 @@ const Header = ({ setSearchResults }) => {
   return (
     <header className="p-4 bg-white text-black">
       <div className="flex justify-between items-center">
-        <div className="flex items-center">
+        <div className="flex items-center main-logo">
           <img
             src="https://cdn3d.iconscout.com/3d/free/thumb/free-book-4573596-3802605.png"
             alt="LeafLink Logo"
@@ -61,7 +61,7 @@ const Header = ({ setSearchResults }) => {
           </Link>
         </div>
         {isLoggedIn && (
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 main-header">
             <Link to="/profile">
               <div className="relative">
                 <img
