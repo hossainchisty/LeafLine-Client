@@ -4,11 +4,13 @@ import { useCartItemCount } from "../../context/CartItemCountContext";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { decrementItemCount } = useCartItemCount();
-  const [cartItems, setCartItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
   const getToken = localStorage.getItem("userInfo");
   const token = getToken ? getToken.replace(/["']/g, "") : "";
+  const { decrementItemCount } = useCartItemCount();
+  const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0); // Initialize total price
+  const [subTotal, setSubTotal] = useState(0); // Initialize sub total
+  const [shippingFees, setShippingFees] = useState(0); // Initialize shipping fees
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
@@ -20,25 +22,39 @@ const Cart = () => {
     })
       .then((response) => response.json())
       .then((cartInfo) => {
-        const bookData = cartInfo.cart.items.map((cartItem) => ({
-          ...cartItem.book,
-          quantity: cartItem.quantity,
+        const bookData = cartInfo.data[0].items.map((cartItem) => ({
           cartId: cartItem._id,
+          title: cartItem.book.title,
+          thumbnail: cartItem.book.thumbnail,
+          quantity: cartItem.quantity,
+          shippingFees: cartItem.shippingFees,
+          subTotal: cartItem.subTotal,
+          totalPrice: cartItem.totalPrice,
         }));
+
+        // Calculate total price, sub total, and shipping fees
+        const calculatedTotalPrice = bookData.reduce(
+          (total, item) => total + item.totalPrice,
+          0
+        );
+        const calculatedSubTotal = bookData.reduce(
+          (total, item) => total + item.subTotal,
+          0
+        );
+        const calculatedShippingFees = bookData.reduce(
+          (total, item) => total + item.shippingFees,
+          0
+        );
+
         setCartItems(bookData);
+        setTotalPrice(calculatedTotalPrice);
+        setSubTotal(calculatedSubTotal);
+        setShippingFees(calculatedShippingFees);
       })
       .catch((error) => {
         console.error("Error fetching cart items:", error);
       });
   }, [token]);
-
-  useEffect(() => {
-    const calculatedTotalPrice = cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
-    setTotalPrice(calculatedTotalPrice);
-  }, [cartItems]);
 
   const handleRemoveItem = (cartId) => {
     fetch(`${apiBaseDomain}/cart/remove/${cartId}`, {
@@ -174,8 +190,16 @@ const Cart = () => {
               <div className="">
                 <p className="mb-1 text-lg font-bold">
                   BDT {totalPrice.toFixed(2)}
-                </p>{" "}
+                </p>
               </div>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-sm">Subtotal:</p>
+              <p className="text-sm">BDT {subTotal.toFixed(2)}</p>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-sm">Shipping Fees:</p>
+              <p className="text-sm">BDT {shippingFees.toFixed(2)}</p>
             </div>
             <hr className="my-4" />
             <div className="mt-4 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white text-center">
