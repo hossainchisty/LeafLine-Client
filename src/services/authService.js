@@ -21,6 +21,9 @@ export async function registerUser(userData) {
     }
   } catch (error) {
     console.error("Error registering user:", error);
-    return { success: false, error: "An error occurred during registration. Please try again later." };
+    return {
+      success: false,
+      error: "An error occurred during registration. Please try again later.",
+    };
   }
 }
