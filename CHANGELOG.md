@@ -1,3 +1,12 @@
+## [2.30.2](https://github.com/hossainchisty/LeafLine-Client/compare/v2.30.1...v2.30.2) (2023-09-30)
+
+
+### Bug Fixes
+
+* getting carts items and prices with payments ([07b99bb](https://github.com/hossainchisty/LeafLine-Client/commit/07b99bbc93bbfd6f65a44e0070b8014982403218))
+
+
+
 ## [2.30.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.30.0...v2.30.1) (2023-09-28)
 
 
@@ -47,15 +56,6 @@
 ### Features
 
 * Improve verification badge ([ce31de7](https://github.com/hossainchisty/LeafLine-Client/commit/ce31de7599d7ce391f143098bb205c369ac86775))
-
-
-
-# [1.27.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.26.1...v1.27.0) (2023-09-20)
-
-
-### Features
-
-* Improve Add to Cart functionality ([2a943dd](https://github.com/hossainchisty/LeafLine-Client/commit/2a943dda152decbc90d84fb286cc1941d49ccb72))
 
 
 
