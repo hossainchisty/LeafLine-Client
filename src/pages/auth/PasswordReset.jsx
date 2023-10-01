@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
-import { storeToken } from "../../utils/Token";
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { storeToken } from '../../utils/Token';
 
 const PasswordReset = () => {
   const {
@@ -16,10 +16,10 @@ const PasswordReset = () => {
   const onSubmit = async (data) => {
     try {
       const response = await fetch(`${apiBaseDomain}/users/login`, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
@@ -28,65 +28,65 @@ const PasswordReset = () => {
         const userData = await response.json();
         storeToken(userData.data.token);
         // dispatch(setUserInfo(userData));
-        navigate("/"); // Redirect to the home page
+        navigate('/'); // Redirect to the home page
       } else if (response.status === 403) {
         toast.error("You're not verified, please verify your email address.");
       } else if (response.status === 429) {
-        toast.error("Too many requests, please try again later.", {
-          icon: "🛑",
+        toast.error('Too many requests, please try again later.', {
+          icon: '🛑',
         });
       } else {
-        toast.error("The email or password you entered is incorrect.");
+        toast.error('The email or password you entered is incorrect.');
       }
     } catch (error) {
-      toast.error("An error occurred while logging in.");
+      toast.error('An error occurred while logging in.');
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mt-10">
-      <div className="bg-white rounded-lg shadow-lg p-4 w-80">
-        <h2 className="text-1xl font-semibold mb-4">
+    <div className='flex flex-col items-center justify-center mt-10'>
+      <div className='bg-white rounded-lg shadow-lg p-4 w-80'>
+        <h2 className='text-1xl font-semibold mb-4'>
           Enter your email we'll send you a link to get back into your account.
         </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-4">
+          <div className='mb-4'>
             <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-600"
+              htmlFor='email'
+              className='block text-sm font-medium text-gray-600'
             >
               Email
-              <span className="text-red-600 text-lg font-bold">*</span>
+              <span className='text-red-600 text-lg font-bold'>*</span>
             </label>
             <input
-              type="email"
-              id="email"
-              {...register("email", {
-                required: "Email is required",
+              type='email'
+              id='email'
+              {...register('email', {
+                required: 'Email is required',
                 pattern: {
                   value: /^\S+@\S+$/i,
-                  message: "Invalid email format",
+                  message: 'Invalid email format',
                 },
               })}
-              className="mt-1 p-2 w-full border rounded-md focus:ring focus:ring-blue-500"
+              className='mt-1 p-2 w-full border border-gray-300 rounded-md'
               required
             />
-            <div className="text-red-600 text-sm">
+            <div className='text-red-600 text-sm'>
               {errors.email && errors.email.message}
             </div>
           </div>
 
-          <div className="text-center">
+          <div className='text-center'>
             <button
-              type="submit"
-              className="bg-gray-800 text-white px-4 py-2 rounded-md"
+              type='submit'
+              className='bg-gray-800 text-white px-4 py-2 rounded-md'
             >
               Send login link
             </button>
           </div>
         </form>
-        <div className="flex justify-center mt-8">
-          <Link to="/signin" className="text-black">
+        <div className='flex justify-center mt-8'>
+          <Link to='/signin' className='text-black'>
             Back to login
           </Link>
         </div>
