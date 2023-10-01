@@ -17,12 +17,10 @@ const Header = ({ setSearchResults }) => {
 
   // Handlers
   const handleSearch = (searchTerm) => {
-    fetch(
-      `${apiBaseDomain}/books/book/search?title=${searchTerm}&author=${searchTerm}`
-    )
+    fetch(`${apiBaseDomain}/books/find/${searchTerm}`)
       .then((response) => response.json())
       .then((data) => {
-        setSearchResults(data.data.books);
+        setSearchResults(data.data);
       })
       .catch((error) => {
         console.error('Error searching for books:', error);
