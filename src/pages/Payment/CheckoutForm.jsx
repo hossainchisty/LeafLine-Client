@@ -91,7 +91,7 @@ const CheckoutForm = () => {
       })),
     };
 
-    await fetch(`${apiBaseDomain}/order/charge/create-order`, {
+    await fetch(`${apiBaseDomain}/payment/charge/create-order`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
