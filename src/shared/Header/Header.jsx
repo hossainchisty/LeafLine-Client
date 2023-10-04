@@ -105,7 +105,7 @@ const Header = ({ setSearchResults }) => {
                     href='#'
                     className='block px-4 py-2 text-sm text-gray-700   '
                   >
-                    Dashboard
+                    My Orders
                   </a>
                 </li>
                 <li>
@@ -113,7 +113,15 @@ const Header = ({ setSearchResults }) => {
                     href='#'
                     className='block px-4 py-2 text-sm text-gray-700   '
                   >
-                    Settings
+                    My Wishlists
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href='#'
+                    className='block px-4 py-2 text-sm text-gray-700   '
+                  >
+                    Checkout
                   </a>
                 </li>
 
