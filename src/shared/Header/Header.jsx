@@ -92,6 +92,12 @@ const Header = ({ setSearchResults }) => {
                       >
                         <Popover.Panel className='absolute z-10 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-48'>
                           <div className='py-1'>
+                            <Link
+                              to='/profile'
+                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                            >
+                              Profile
+                            </Link>
                             <a
                               href='#'
                               className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
