@@ -11,7 +11,6 @@ import BookDetails from './components/Book/BookDetails';
 import Cart from './components/Cart/Cart';
 import PasswordReset from './pages/Auth/PasswordReset';
 import { CartItemCountProvider } from './context/CartItemCountContext';
-import Footer from './shared/Footer/Footer';
 import CheckoutForm from './pages/Payment/CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -82,7 +81,6 @@ function App() {
             <Route path='/payment-success' element={<PaymentSuccess />} />
           </Routes>
         </div>
-        <Footer />
       </div>
     </CartItemCountProvider>
   );
