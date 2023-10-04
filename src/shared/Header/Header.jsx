@@ -1,23 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { Popover, Transition } from '@headlessui/react';
+import { useState, useEffect, Fragment } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { clearToken } from '../../utils/Token';
+
 import CartCounter from '../../components/Cart/CartCounter';
 
 const Header = ({ setSearchResults }) => {
-  // State and Hooks
   const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const validToken = window.localStorage.getItem('userInfo');
   const isLoggedIn = !!validToken;
-  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
-  // Handlers
   const handleSearch = (searchTerm) => {
-    fetch(`${apiBaseDomain}/books/find/${searchTerm}`)
+    fetch(`${apiBaseDomain}/books/search?title=${searchTerm}`)
       .then((response) => response.json())
       .then((data) => {
         setSearchResults(data.data);
@@ -32,7 +31,6 @@ const Header = ({ setSearchResults }) => {
   }, [searchTerm]);
 
   const handleChange = (e) => {
-    // Update the searchTerm state when the user types in the input field
     setSearchTerm(e.target.value);
   };
 
@@ -55,7 +53,7 @@ const Header = ({ setSearchResults }) => {
               className='h-8 mr-3'
               alt='LeafLine Logo'
             />
-            <span className='self-center text-3xl font-extrabold whitespace-nowrap '>
+            <span className='self-center text-3xl font-extrabold whitespace-nowrap'>
               LeafLine
             </span>
           </Link>
@@ -68,73 +66,64 @@ const Header = ({ setSearchResults }) => {
                     <CartCounter />
                   </Link>
                 </div>
-                <button
-                  type='button'
-                  className='flex mr-3 text-sm  rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 '
-                  id='user-menu-button'
-                  aria-expanded='false'
-                  data-dropdown-toggle='user-dropdown'
-                  data-dropdown-placement='bottom'
-                >
-                  <span className='sr-only'>Open user menu</span>
+                <Popover className='relative'>
+                  {({ open }) => (
+                    <>
+                      <Popover.Button
+                        className={`${
+                          open ? 'text-gray-900' : 'text-gray-500'
+                        } group bg-white rounded-full px-3 py-2 inline-flex items-center text-base font-medium focus:outline-none`}
+                      >
+                        <img
+                          className='w-8 h-8 rounded-full mr-2'
+                          src='https://avatars.githubusercontent.com/u/62835101?v=4'
+                          alt='user photo'
+                        />
+                      </Popover.Button>
 
-                  <img
-                    className='w-8 h-8 rounded-full'
-                    src='https://avatars.githubusercontent.com/u/62835101?v=4'
-                    alt='user photo'
-                  />
-                </button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-100'
+                        enterFrom='transform opacity-0 scale-95'
+                        enterTo='transform opacity-100 scale-100'
+                        leave='transition ease-in duration-75'
+                        leaveFrom='transform opacity-100 scale-100'
+                        leaveTo='transform opacity-0 scale-95'
+                      >
+                        <Popover.Panel className='absolute z-10 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-48'>
+                          <div className='py-1'>
+                            <a
+                              href='#'
+                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                            >
+                              My Orders
+                            </a>
+                            <a
+                              href='#'
+                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                            >
+                              My Wishlists
+                            </a>
+                            <a
+                              href='#'
+                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                            >
+                              Checkout
+                            </a>
+                            <button
+                              onClick={logout}
+                              className='block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
+                            >
+                              Sign out
+                            </button>
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </>
+                  )}
+                </Popover>
               </>
             )}
-            {/* Dropdown menu */}
-            <div
-              className='z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow'
-              id='user-dropdown'
-            >
-              <div className='px-4 py-3'>
-                <span className='block text-sm text-gray-900 font-semibold'>
-                  <Link to='/profile'>Hossain Chisty</Link>
-                </span>
-                <span className='block text-sm  text-gray-500 truncate'>
-                  hossain.chisty11@gmail.com
-                </span>
-              </div>
-              <ul className='py-2' aria-labelledby='user-menu-button'>
-                <li>
-                  <a
-                    href='#'
-                    className='block px-4 py-2 text-sm text-gray-700   '
-                  >
-                    My Orders
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='block px-4 py-2 text-sm text-gray-700   '
-                  >
-                    My Wishlists
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href='#'
-                    className='block px-4 py-2 text-sm text-gray-700   '
-                  >
-                    Checkout
-                  </a>
-                </li>
-
-                <li>
-                  <button
-                    onClick={logout}
-                    className='block px-4 py-2 text-sm text-gray-700   '
-                  >
-                    Sign out
-                  </button>
-                </li>
-              </ul>
-            </div>
             {!isLoggedIn && (
               <div className='ml-2'>
                 <Link
@@ -143,7 +132,6 @@ const Header = ({ setSearchResults }) => {
                 >
                   Sign Up
                 </Link>
-
                 <Link
                   to='/signin'
                   className='m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black hide-on-small-screen'

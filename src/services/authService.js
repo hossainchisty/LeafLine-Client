@@ -2,7 +2,7 @@ const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
 export async function registerUser(userData) {
   try {
-    const response = await fetch(`${apiBaseDomain}/users/register`, {
+    const response = await fetch(`${apiBaseDomain}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

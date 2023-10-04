@@ -30,7 +30,7 @@ const Signin = () => {
         return;
       }
 
-      const response = await fetch(`${apiBaseDomain}/users/login`, {
+      const response = await fetch(`${apiBaseDomain}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
