@@ -147,7 +147,7 @@ const Header = ({ setSearchResults }) => {
             <input
               type='text'
               placeholder='Search for books, authors...'
-              className='w-50 md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black'
+              className='w-full md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black'
               value={searchTerm}
               onChange={handleChange}
             />
