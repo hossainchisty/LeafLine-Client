@@ -24,7 +24,7 @@ const PaymentSuccess = () => {
         <div className='py-10 text-center'>
           <Link
             to='/'
-            className='px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3'
+            className='px-12 bg-green-700 hover:bg-green-600 text-white font-semibold py-3 rounded-full'
           >
             Got it, thanks!
           </Link>
