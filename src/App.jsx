@@ -15,6 +15,7 @@ import CheckoutForm from './pages/Payment/CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
+import Favorite from './components/Favorite/Favorite';
 
 // Load Stripe API key
 const stripe_key = import.meta.env.VITE_STRIPE_API_KEY;
@@ -79,6 +80,7 @@ function App() {
             {/* Route for placing an order */}
             <Route path='/place-order' element={<CheckoutFormWrapper />} />
             <Route path='/payment-success' element={<PaymentSuccess />} />
+            <Route path='/wishlists' element={<Favorite />} />
           </Routes>
         </div>
       </div>
