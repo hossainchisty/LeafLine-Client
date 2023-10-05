@@ -1,3 +1,12 @@
+# [2.33.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.32.0...v2.33.0) (2023-10-05)
+
+
+### Features
+
+* Use skeleton for books ([c8ed543](https://github.com/hossainchisty/LeafLine-Client/commit/c8ed5430a20d5eb9b2b7b3084923c1016a9838ca))
+
+
+
 # [2.32.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.31.0...v2.32.0) (2023-10-05)
 
 
@@ -37,21 +46,6 @@
 
 * In this updated version: ([7fadcc5](https://github.com/hossainchisty/LeafLine-Client/commit/7fadcc5d07393bc4f6996d6595a949caabf28287))
 * Modularity: Production-grade components ([7f9b58a](https://github.com/hossainchisty/LeafLine-Client/commit/7f9b58ab60479a2b24d9537d5456de403e740c4f))
-
-
-
-# [1.30.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.29.0...v1.30.0) (2023-09-25)
-
-
-### Bug Fixes
-
-* after buy product clear cart items ([fb34458](https://github.com/hossainchisty/LeafLine-Client/commit/fb344588558e03527421abb10a2ae99a33afd012))
-
-
-### Features
-
-* Addon books spinner better UX ([085df72](https://github.com/hossainchisty/LeafLine-Client/commit/085df7245b8347bb68fe9eb4e47476f9597a3d29))
-* User can buy books and pay with stripe ([44a142e](https://github.com/hossainchisty/LeafLine-Client/commit/44a142e234a3980661a0ce48fcaf38c429d73443))
 
 
 
