@@ -98,17 +98,14 @@ const Header = ({ setSearchResults }) => {
                             >
                               Profile
                             </Link>
-                            <a
-                              href='#'
+                            <Link
+                              to='/order'
                               className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
                             >
                               My Orders
                             </a>
                             <Link
                               to='/wishlists'
-                              className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
-                            >
-                              My Wishlists
                             </Link>
 
                             <a
