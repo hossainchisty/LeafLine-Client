@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Favorite from '../Favorite/Favorite';
+import Process from '../Progress/Process';
 
 // UserProfile component to render the user profile
 function UserProfile({ user }) {
@@ -34,7 +34,8 @@ function UserProfile({ user }) {
           {user.bio}
         </p>
       </h2>
-      <Favorite />
+      {/* Reading process of book - In process⌛ */}
+      <Process />
     </div>
   );
 }
