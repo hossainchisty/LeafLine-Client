@@ -5,8 +5,9 @@ import Featured from './Featured/Featured';
 import { FaRegHeart } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import Star from './Star';
+import Skeleton from 'react-loading-skeleton';
 
-const Book = ({ book }) => {
+const Book = ({ book, isLoading }) => {
   const [showMessage, setShowMessage] = useState(false);
   const { title, author, thumbnail, price, featured, rating, _id } = book;
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
@@ -42,31 +43,50 @@ const Book = ({ book }) => {
 
   return (
     <div className='flex rounded-lg shadow-lg overflow-hidden relative'>
-      <img
-        className='w-32 h-35 object-cover rounded-t-lg'
-        src={thumbnail}
-        alt={title}
-      />
+      {isLoading ? (
+        <Skeleton width={120} height={160} className='rounded-t-lg' />
+      ) : (
+        <img
+          className='w-32 h-35 object-cover rounded-t-lg'
+          src={thumbnail}
+          alt={title}
+        />
+      )}
       <div className='flex flex-col p-4 space-y-2'>
-        <Featured featured={featured} id={_id} />
-        <Link to={`/book/${_id}`}>
-          <h4 className='text-lg font-semibold hover:text-green-600'>
-            {title}
-          </h4>
-        </Link>
+        <Featured featured={featured} id={_id} isLoading={isLoading} />
 
+        <Link to={`/book/${_id}`}>
+          {isLoading ? (
+            <Skeleton width={190} height={20} />
+          ) : (
+            <h4 className='text-lg font-semibold hover:text-green-600'>
+              {title}
+            </h4>
+          )}
+        </Link>
         <p className='text-gray-600'>
-          by{' '}
           <Link>
-            <span className='text-blue-400'>{author}</span>
+            {isLoading ? (
+              <Skeleton width={90} />
+            ) : (
+              <span>
+                by{' '}
+                <span className='text-gray-800 hover:text-green-600'>
+                  {author}
+                </span>
+              </span>
+            )}
           </Link>
         </p>
         <div className='flex items-center space-x-2'>
           {Array.from({ length: rating }).map((element, index) => (
-            <Star element={element} key={index} />
+            <Star element={element} key={index} isLoading={isLoading} />
           ))}
         </div>
-        <p className='text-blue-600 font-semibold text-lg'>BDT {price}</p>
+        <p className='text-blue-400 font-semibold text-lg'>
+          {isLoading ? <Skeleton width={40} /> : `$${price}`}
+        </p>
+
         <div className='flex items-center space-x-2'>
           {/* Wishlist Icon/Button */}
           <button
@@ -79,7 +99,7 @@ const Book = ({ book }) => {
               <span className='pr-1'>
                 <FaRegHeart />
               </span>
-              Went to read{' '}
+              {isLoading ? <Skeleton width={40} /> : `Went to read`}
             </p>
           </button>
           {showMessage && (
@@ -94,6 +114,7 @@ const Book = ({ book }) => {
 };
 
 Book.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   book: PropTypes.shape({
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
