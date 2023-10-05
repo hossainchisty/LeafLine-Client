@@ -1,3 +1,12 @@
+# [2.32.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.31.0...v2.32.0) (2023-10-05)
+
+
+### Features
+
+* User account managements demo ([ebd4869](https://github.com/hossainchisty/LeafLine-Client/commit/ebd48693d2cfc569360d4fb05949f429fabc9db2))
+
+
+
 # [2.31.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.30.2...v2.31.0) (2023-10-04)
 
 
@@ -43,24 +52,6 @@
 
 * Addon books spinner better UX ([085df72](https://github.com/hossainchisty/LeafLine-Client/commit/085df7245b8347bb68fe9eb4e47476f9597a3d29))
 * User can buy books and pay with stripe ([44a142e](https://github.com/hossainchisty/LeafLine-Client/commit/44a142e234a3980661a0ce48fcaf38c429d73443))
-
-
-
-# [1.29.0](https://github.com/hossainchisty/LeafLine-Client/compare/v1.28.0...v1.29.0) (2023-09-23)
-
-
-### Bug Fixes
-
-* only verified user can get badge ([1f3ff5a](https://github.com/hossainchisty/LeafLine-Client/commit/1f3ff5aa1213f5ae8bcb23cbfcbd6697218bc89f))
-
-
-### Features
-
-* Addon bio of users ([e7a214c](https://github.com/hossainchisty/LeafLine-Client/commit/e7a214c652cb4b6d58134ded912b7770a329db83))
-* Addon footer ([cf05aab](https://github.com/hossainchisty/LeafLine-Client/commit/cf05aabfe233adf0f525bf730297308c6e269068))
-* Addon loading more UX friendly ([3ccee0a](https://github.com/hossainchisty/LeafLine-Client/commit/3ccee0a9f4bafdf7443d477e6e3370bf66ef3035))
-* Addon message for unauthorize users ([11714e3](https://github.com/hossainchisty/LeafLine-Client/commit/11714e3f058c00174294450b514942e7c700ed96))
-* Addon more details of book ([19b4c31](https://github.com/hossainchisty/LeafLine-Client/commit/19b4c314ae9cd5bb3cef0100662a5d86e657d83f))
 
 
 
