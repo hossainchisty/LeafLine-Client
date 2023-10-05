@@ -60,6 +60,7 @@ function App() {
                 />
               }
             />
+            <Route path='/book/:productId' element={<BookDetails />} />
 
             {/* Route related to authentication */}
             <Route path='/signup' element={<Signup />} />
@@ -71,19 +72,16 @@ function App() {
 
             {/* Route related to user profile */}
             <Route path='/profile' element={<Profile />} />
+            <Route path='/wishlists' element={<Favorite />} />
             <Route path='/order' element={<MyAccount />} />
             <Route path='/cart' element={<Cart />} />
-            {/* <Route path="/wish-list" element={<Favorite />} /> */}
-            <Route
-              path='/book/:productId'
-              element={<BookDetails books={books} />}
-            />
             <Route path='/forget-password' element={<PasswordReset />} />
 
             {/* Route for placing an order */}
             <Route path='/place-order' element={<CheckoutFormWrapper />} />
             <Route path='/payment-success' element={<PaymentSuccess />} />
-            <Route path='/wishlists' element={<Favorite />} />
+
+            {/* Route for handle page not found */}
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
