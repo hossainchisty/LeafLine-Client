@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import Book from './Book';
-import Skeleton from 'react-loading-skeleton';
 
 const BookList = ({ books, isLoading }) => {
   return (
     <div className='container mx-auto'>
       <h2 className='mt-5 mb-5 text-xl font-bold'>
-        {isLoading ? <Skeleton width={120} /> : `Book List`}
+        {isLoading ? '' : `Book List`}
       </h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4'>
         {books.map((book, index) => (
@@ -15,7 +14,7 @@ const BookList = ({ books, isLoading }) => {
       </div>
 
       <h2 className='mt-5 mb-5 text-xl font-bold'>
-        {isLoading ? <Skeleton width={120} /> : `Popular Products`}
+        {isLoading ? '' : `Popular Products`}
       </h2>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4'>
@@ -25,7 +24,7 @@ const BookList = ({ books, isLoading }) => {
       </div>
 
       <h2 className='mt-5 mb-5 text-xl font-bold'>
-        {isLoading ? <Skeleton width={120} /> : `New Arrival Books`}
+        {isLoading ? '' : `New Arrival Books`}
       </h2>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4'>
