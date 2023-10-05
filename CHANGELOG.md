@@ -1,3 +1,14 @@
+# [2.34.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.33.0...v2.34.0) (2023-10-05)
+
+
+### Features
+
+* process of reading demo ([4d79fee](https://github.com/hossainchisty/LeafLine-Client/commit/4d79feed2dcca4e3848eeb2ded7c6b00146bad3d))
+* skeleton on favorite books ([35bafd3](https://github.com/hossainchisty/LeafLine-Client/commit/35bafd3fa399f8c862d09144ea2e1351e2bd997d))
+* User profile skeleton ([5b6c4d9](https://github.com/hossainchisty/LeafLine-Client/commit/5b6c4d9a71634e1acb9a821bfd30c404f12f225d))
+
+
+
 # [2.33.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.32.0...v2.33.0) (2023-10-05)
 
 
@@ -36,16 +47,6 @@
 ### Bug Fixes
 
 * getting carts items and prices with payments ([07b99bb](https://github.com/hossainchisty/LeafLine-Client/commit/07b99bbc93bbfd6f65a44e0070b8014982403218))
-
-
-
-## [2.30.1](https://github.com/hossainchisty/LeafLine-Client/compare/v1.30.0...v2.30.1) (2023-09-28)
-
-
-### Performance Improvements
-
-* In this updated version: ([7fadcc5](https://github.com/hossainchisty/LeafLine-Client/commit/7fadcc5d07393bc4f6996d6595a949caabf28287))
-* Modularity: Production-grade components ([7f9b58a](https://github.com/hossainchisty/LeafLine-Client/commit/7f9b58ab60479a2b24d9537d5456de403e740c4f))
 
 
 
