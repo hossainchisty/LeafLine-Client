@@ -17,7 +17,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
 import Favorite from './components/Favorite/Favorite';
 import MyAccount from './components/Profile/MyAccount';
-
+import PageNotFound from './shared/404/PageNotFound';
 
 // Load Stripe API key
 const stripe_key = import.meta.env.VITE_STRIPE_API_KEY;
@@ -84,6 +84,7 @@ function App() {
             <Route path='/place-order' element={<CheckoutFormWrapper />} />
             <Route path='/payment-success' element={<PaymentSuccess />} />
             <Route path='/wishlists' element={<Favorite />} />
+            <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
       </div>
