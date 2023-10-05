@@ -1,3 +1,12 @@
+# [2.35.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.34.0...v2.35.0) (2023-10-05)
+
+
+### Features
+
+* Added 404 pages ([ba96bfd](https://github.com/hossainchisty/LeafLine-Client/commit/ba96bfd278954ec04aa2e2cca9c99c0cefa352b6))
+
+
+
 # [2.34.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.33.0...v2.34.0) (2023-10-05)
 
 
@@ -38,15 +47,6 @@
 ### Features
 
 * Add profile link ([3b6bce2](https://github.com/hossainchisty/LeafLine-Client/commit/3b6bce29c5f89383624986f9a1e7ae6d5860dd2b))
-
-
-
-## [2.30.2](https://github.com/hossainchisty/LeafLine-Client/compare/v2.30.1...v2.30.2) (2023-09-30)
-
-
-### Bug Fixes
-
-* getting carts items and prices with payments ([07b99bb](https://github.com/hossainchisty/LeafLine-Client/commit/07b99bbc93bbfd6f65a44e0070b8014982403218))
 
 
 
