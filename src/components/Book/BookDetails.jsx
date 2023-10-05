@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from 'react';
@@ -12,42 +13,69 @@ import {
   // faClipboard,
   // faTimes,
 } from '@fortawesome/free-solid-svg-icons';
+import BookDetailsSkeleton from './BookDetailsSkeleton';
 
-const BookDetails = ({ books }) => {
+const BookDetails = () => {
+  const getToken = localStorage.getItem('userInfo');
+  const token = getToken ? getToken.replace(/["']/g, '') : '';
+  const isLoggedIn = !!token;
+  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const { incrementItemCount } = useCartItemCount();
   const [cart, setCart] = useState([]);
+  const [book, setBook] = useState(null);
   const { productId } = useParams();
   const [showFullDescription, setShowFullDescription] = useState(false);
 
-  // Check if the book exists before proceeding
-  const book = books.find(
-    (book) => book._id.toString() === productId.toString()
-  );
+  useEffect(() => {
+    // Fetch book details based on productId from the backend API
+    const fetchBookDetails = async () => {
+      try {
+        const response = await fetch(`${apiBaseDomain}/books/${productId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setBook(data.data);
+        } else {
+          console.error('Error fetching book details:', response.status);
+        }
+      } catch (error) {
+        console.error('Error fetching book details:', error);
+      }
+    };
+
+    fetchBookDetails();
+  }, [productId]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const existingCartData = localStorage.getItem('cart');
+      if (existingCartData) {
+        setCart(JSON.parse(existingCartData));
+      }
+    }
+  }, []);
 
   if (!book) {
-    return <div>Book not found</div>;
+    return <BookDetailsSkeleton />;
   }
 
   const {
     title,
-    author,
     thumbnail,
     price,
+    author,
     rating,
     description,
     publishYear,
     publisher,
     ISBN,
-    pages,
     language,
-    genre,
+    pages,
     stock,
+    genre,
+    reviews,
+    averageRating,
+    read,
   } = book;
-
-  const getToken = localStorage.getItem('userInfo');
-  const token = getToken ? getToken.replace(/["']/g, '') : '';
-  const isLoggedIn = !!token;
-  const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   const addToCart = () => {
     const quantity = 1; // Quantity
@@ -89,15 +117,6 @@ const BookDetails = ({ books }) => {
         });
     }
   };
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      const existingCartData = localStorage.getItem('cart');
-      if (existingCartData) {
-        setCart(JSON.parse(existingCartData));
-      }
-    }
-  }, []);
 
   // Function to generate star rating icons
   const generateStarRating = (rating) => {
@@ -172,8 +191,8 @@ const BookDetails = ({ books }) => {
             <div className='text-black font-semibold'>
               <p className='text-sm'>In Stock</p>
               <p className='text-xs mt-1'>
-                ({stock.remainingStock}{' '}
-                {stock.remainingStock === 1 ? 'copy' : 'copies'} available)
+                ({stock?.remainingStock}{' '}
+                {stock?.remainingStock === 1 ? 'copy' : 'copies'} available)
               </p>
             </div>
           </div>
@@ -237,7 +256,7 @@ const BookDetails = ({ books }) => {
           </button>
         </div>
       </div>
-      <Review />
+      <Review reviews={reviews} />
     </div>
   );
 };
