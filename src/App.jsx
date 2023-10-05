@@ -15,6 +15,7 @@ import CheckoutForm from './pages/Payment/CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentSuccess from './pages/Payment/PaymentSuccess';
+import MyAccount from './components/Profile/MyAccount';
 
 // Load Stripe API key
 const stripe_key = import.meta.env.VITE_STRIPE_API_KEY;
@@ -68,6 +69,7 @@ function App() {
 
             {/* Route related to user profile */}
             <Route path='/profile' element={<Profile />} />
+            <Route path='/order' element={<MyAccount />} />
             <Route path='/cart' element={<Cart />} />
             {/* <Route path="/wish-list" element={<Favorite />} /> */}
             <Route
