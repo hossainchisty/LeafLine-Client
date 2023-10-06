@@ -65,7 +65,7 @@ const BookDetails = () => {
     author,
     rating,
     description,
-    publishYear,
+    publishTime,
     publisher,
     ISBN,
     language,
@@ -167,7 +167,7 @@ const BookDetails = () => {
             <div className='flex items-center'>
               {generateStarRating(rating)}
               <p className='ml-2 text-sm font-medium text-gray-500 dark:text-gray-400'>
-                {rating} out of 5
+                {rating ? '' : 0} out of 5
               </p>
             </div>
           </div>
@@ -175,7 +175,7 @@ const BookDetails = () => {
             <Link to={`/author/${author}`}>
               <span className='text-blue-400'>{author}</span>
             </Link>{' '}
-            — <span className='text-gray-600'>{publishYear}</span> <br />
+            — <span className='text-gray-600'>{publishTime}</span> <br />
             <div className='mt-2'>
               <span className='bg-gray-100 text-black text-xs font-medium mr-2 px-2.5 py-0.5 rounded-lg '>
                 {genre}
@@ -227,7 +227,7 @@ const BookDetails = () => {
                       <span className='text-black font-semibold'>
                         Edition release date:
                       </span>{' '}
-                      {publishYear}
+                      {publishTime}
                       <br />
                     </p>
                   </div>
