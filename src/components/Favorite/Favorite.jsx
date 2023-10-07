@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
 
 const Favorite = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -100,11 +101,13 @@ const Favorite = () => {
               {isLoading ? (
                 <Skeleton width={'100%'} height={'100%'} />
               ) : (
-                <img
-                  src={book.thumbnail}
-                  alt={book.title}
-                  className='h-full w-full object-cover lg:h-full lg:w-full'
-                />
+                <Link to={`/book/${book._id}`}>
+                  <img
+                    src={book.thumbnail}
+                    alt={book.title}
+                    className='h-full w-full object-cover lg:h-full lg:w-full'
+                  />
+                </Link>
               )}
             </div>
             <div className='mt-4 flex justify-between'>
@@ -112,7 +115,9 @@ const Favorite = () => {
                 {isLoading ? (
                   <Skeleton width={120} />
                 ) : (
-                  <h3 className='text-sm text-gray-700'>{book.title}</h3>
+                  <Link to={`/book/${book._id}`}>
+                    <h3 className='text-sm text-gray-700'>{book.title}</h3>
+                  </Link>
                 )}
               </div>
               {isLoading ? (
