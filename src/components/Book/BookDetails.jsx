@@ -157,7 +157,7 @@ const BookDetails = () => {
     <div className='p-4 md:p-8'>
       <div className='flex flex-col md:flex-row rounded-lg shadow-lg overflow-hidden'>
         <img
-          className='w-full md:w-64 h-64 object-cover'
+          className='w-full h-full object-cover lg:h-full lg:w-full'
           src={thumbnail}
           alt={title}
         />
