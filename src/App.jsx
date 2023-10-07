@@ -26,7 +26,6 @@ const stripePromise = loadStripe(`${stripe_key}`);
 function App() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
@@ -45,20 +44,14 @@ function App() {
 
   return (
     <CartItemCountProvider>
-      <div>
-        <Header setSearchResults={setSearchResults} />
-
+      <>
+        <Header />
         <div className='container mx-auto p-4'>
           <Routes>
             {/* Route related to book searching and browsing */}
             <Route
               path='/'
-              element={
-                <BookList
-                  books={searchResults.length > 0 ? searchResults : books}
-                  isLoading={isLoading}
-                />
-              }
+              element={<BookList books={books} isLoading={isLoading} />}
             />
             <Route path='/book/:productId' element={<BookDetails />} />
 
@@ -85,7 +78,7 @@ function App() {
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </div>
-      </div>
+      </>
     </CartItemCountProvider>
   );
 }

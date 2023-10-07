@@ -1,34 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
+import { useState, Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
-import { useState, useEffect, Fragment } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { clearToken } from '../../utils/Token';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
 import CartCounter from '../../components/Cart/CartCounter';
+import SearchResults from '../../components/Book/Search/SearchResults';
 
-const Header = ({ setSearchResults }) => {
+const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
   const apiBaseDomain = import.meta.env.VITE_API_BASE_URL;
   const validToken = window.localStorage.getItem('userInfo');
   const isLoggedIn = !!validToken;
-
-  const handleSearch = (searchTerm) => {
-    fetch(`${apiBaseDomain}/books/search?title=${searchTerm}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setSearchResults(data.data);
-      })
-      .catch((error) => {
-        console.error('Error searching for books:', error);
-      });
-  };
-
-  useEffect(() => {
-    handleSearch(searchTerm);
-  }, [searchTerm]);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -58,6 +45,20 @@ const Header = ({ setSearchResults }) => {
             </span>
           </Link>
 
+          {/* Search Bar */}
+          {location.pathname === '/' && (
+            <div>
+              <input
+                type='text'
+                placeholder='Search for books, authors...'
+                className='w-1/2 md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black ml-4'
+                value={searchTerm}
+                onChange={handleChange}
+              />
+              <SearchResults searchTerm={searchTerm} />
+            </div>
+          )}
+
           <div className='flex items-center md:order-2'>
             {isLoggedIn && (
               <>
@@ -65,6 +66,44 @@ const Header = ({ setSearchResults }) => {
                   <Link to='/cart' className='relative'>
                     <CartCounter />
                   </Link>
+                </div>
+                {/* Notifications icon */}
+                <div className='text-2xl'>
+                  <Popover className='relative'>
+                    {({ open }) => (
+                      <>
+                        <Popover.Button
+                          className={`${
+                            open ? 'text-gray-900' : 'text-gray-500'
+                          } group bg-white rounded-full p-2 focus:outline-none`}
+                        >
+                          <FontAwesomeIcon
+                            icon={faBell}
+                            className='text-black'
+                          />
+                        </Popover.Button>
+
+                        <Transition
+                          as={Fragment}
+                          enter='transition ease-out duration-100'
+                          enterFrom='transform opacity-0 scale-95'
+                          enterTo='transform opacity-100 scale-100'
+                          leave='transition ease-in duration-75'
+                          leaveFrom='transform opacity-100 scale-100'
+                          leaveTo='transform opacity-0 scale-95'
+                        >
+                          <Popover.Panel className='absolute z-10 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg w-48'>
+                            <div className='py-1 px-4'>
+                              {/* Content of your notifications */}
+                              <p className='text-sm text-gray-700'>
+                                No notifications
+                              </p>
+                            </div>
+                          </Popover.Panel>
+                        </Transition>
+                      </>
+                    )}
+                  </Popover>
                 </div>
                 <Popover className='relative'>
                   {({ open }) => (
@@ -149,17 +188,6 @@ const Header = ({ setSearchResults }) => {
             )}
           </div>
         </div>
-        {location.pathname === '/' && (
-          <div className='mt-5 md:flex md:items-center md:justify-center'>
-            <input
-              type='text'
-              placeholder='Search for books, authors...'
-              className='w-full md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black'
-              value={searchTerm}
-              onChange={handleChange}
-            />
-          </div>
-        )}
       </nav>
     </header>
   );
