@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Process = () => {
   const [favoriteBooks, setFavoriteBooks] = useState({
@@ -45,23 +46,36 @@ const Process = () => {
     return (
       <div className='mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8'>
         {books.map((book) => (
-          <div key={book._id} className='group relative'>
+          <div key={book._id} className='relative flex flex-col group'>
             <div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80'>
-              <img
-                src={book.thumbnail}
-                alt={book.title}
-                className='h-full w-full object-cover lg:h-full lg:w-full'
-              />
+              <Link to={`/book/${book._id}`}>
+                <img
+                  src={book.thumbnail}
+                  alt={book.title}
+                  className='h-full w-full object-cover lg:h-full lg:w-full'
+                />
+              </Link>
             </div>
-            <div className='mt-4 flex justify-between'>
+            <div className='mt-4 flex justify-between items-center'>
               <div>
-                <h3 className='text-sm text-gray-700'>{book.title}</h3>
+                <Link to={`/book/${book._id}`}>
+                  <h3 className='text-sm text-gray-700'>{book.title}</h3>
+                </Link>
               </div>
-            </div>
-            <div className='flex items-center mt-5'>
-              <button className='bg-gray-100 p-1 w-full text-center rounded-lg hover:bg-gray-300 cursor-pointer'>
-                Remove
-              </button>
+              {/* Dropdown menu */}
+              <div className='absolute right-0 mt-2 bg-white shadow-lg rounded-md hidden group-hover:block'>
+                <div className='py-1'>
+                  <button className='block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-right'>
+                    Want to Read
+                  </button>
+                  <button className='block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-right'>
+                    Currently Reading
+                  </button>
+                  <button className='block px-4 py-2 text-sm text-gray-800 hover:bg-gray-200 w-full text-right'>
+                    Finished
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         ))}
@@ -74,19 +88,45 @@ const Process = () => {
       <div className='text-xl font-semibold mb-2 text-black'>
         Currently Reading
       </div>
-      <p>
-        You have {favoriteBooks.currentlyReading.length} book(s) in your
-        Currently Reading List
-      </p>
-      {renderBooks(favoriteBooks.currentlyReading)}
+      {favoriteBooks.currentlyReading.length > 0 ? (
+        <div>
+          <p>
+            You have {favoriteBooks.currentlyReading.length} book(s) in your
+            Currently Reading List
+          </p>
+          {renderBooks(favoriteBooks.currentlyReading)}
+        </div>
+      ) : (
+        <p>No books added yet</p>
+      )}
 
-      <div className='text-xl font-semibold mb-2 text-black mt-10'>To Read</div>
-      <p>You have {favoriteBooks.toRead.length} book(s) in your To Read List</p>
-      {renderBooks(favoriteBooks.toRead)}
+      <div className='text-xl font-semibold mb-2 text-black mt-10'>
+        Want to read
+      </div>
+      {favoriteBooks.toRead.length > 0 ? (
+        <div>
+          <p>
+            You have {favoriteBooks.toRead.length} book(s) in your To Read List
+          </p>
+          {renderBooks(favoriteBooks.toRead)}
+        </div>
+      ) : (
+        <p className='border bg-slate-100 py-10 text-center font-semibold'>
+          No books added yet
+        </p>
+      )}
 
-      <div className='text-xl font-semibold mb-2 text-black mt-10'>Read</div>
-      <p>You have {favoriteBooks.read.length} book(s) in your Read List</p>
-      {renderBooks(favoriteBooks.read)}
+      <div className='text-xl font-semibold mb-2 text-black mt-10'>
+        Finished
+      </div>
+      {favoriteBooks.read.length > 0 ? (
+        <div>
+          <p>You have {favoriteBooks.read.length} book(s) in your Read List</p>
+          {renderBooks(favoriteBooks.read)}
+        </div>
+      ) : (
+        <p>No books added yet</p>
+      )}
     </div>
   );
 };
