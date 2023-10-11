@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -18,6 +19,7 @@ import PaymentSuccess from './pages/Payment/PaymentSuccess';
 import Favorite from './components/Favorite/Favorite';
 import MyAccount from './components/Profile/MyAccount';
 import PageNotFound from './shared/404/PageNotFound';
+import { useMemo } from 'react';
 
 // Load Stripe API key
 const stripe_key = import.meta.env.VITE_STRIPE_API_KEY;
@@ -42,6 +44,7 @@ function App() {
       });
   }, []);
 
+  const memoizedBooks = useMemo(() => books, [books]);
   return (
     <CartItemCountProvider>
       <>
@@ -51,7 +54,7 @@ function App() {
             {/* Route related to book searching and browsing */}
             <Route
               path='/'
-              element={<BookList books={books} isLoading={isLoading} />}
+              element={<BookList books={memoizedBooks} isLoading={isLoading} />}
             />
             <Route path='/book/:productId' element={<BookDetails />} />
 
