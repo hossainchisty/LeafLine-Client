@@ -20,6 +20,7 @@ import Favorite from './components/Favorite/Favorite';
 import MyAccount from './components/Profile/MyAccount';
 import PageNotFound from './shared/404/PageNotFound';
 import { useMemo } from 'react';
+import Patrons from './components/Patrons/Patrons';
 
 // Load Stripe API key
 const stripe_key = import.meta.env.VITE_STRIPE_API_KEY;
@@ -76,6 +77,9 @@ function App() {
             {/* Route for placing an order */}
             <Route path='/place-order' element={<CheckoutFormWrapper />} />
             <Route path='/payment-success' element={<PaymentSuccess />} />
+
+            {/* Become a Patron */}
+            <Route path='/patron' element={<Patrons />} />
 
             {/* Route for handle page not found */}
             <Route path='*' element={<PageNotFound />} />
