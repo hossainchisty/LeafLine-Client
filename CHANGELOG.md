@@ -1,3 +1,12 @@
+## [2.36.3](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.2...v2.36.3) (2023-10-15)
+
+
+### Performance Improvements
+
+* Skeleton and performance ([007a023](https://github.com/hossainchisty/LeafLine-Client/commit/007a0236298665362b26c753af7c2c3ee10e5eb0))
+
+
+
 ## [2.36.2](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.1...v2.36.2) (2023-10-15)
 
 
@@ -39,17 +48,6 @@
 ### Features
 
 * Added 404 pages ([ba96bfd](https://github.com/hossainchisty/LeafLine-Client/commit/ba96bfd278954ec04aa2e2cca9c99c0cefa352b6))
-
-
-
-# [2.34.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.33.0...v2.34.0) (2023-10-05)
-
-
-### Features
-
-* process of reading demo ([4d79fee](https://github.com/hossainchisty/LeafLine-Client/commit/4d79feed2dcca4e3848eeb2ded7c6b00146bad3d))
-* skeleton on favorite books ([35bafd3](https://github.com/hossainchisty/LeafLine-Client/commit/35bafd3fa399f8c862d09144ea2e1351e2bd997d))
-* User profile skeleton ([5b6c4d9](https://github.com/hossainchisty/LeafLine-Client/commit/5b6c4d9a71634e1acb9a821bfd30c404f12f225d))
 
 
 
