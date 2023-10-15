@@ -1,3 +1,12 @@
+## [2.36.1](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.0...v2.36.1) (2023-10-11)
+
+
+### Performance Improvements
+
+* improve performance by using ```useMemo``` ([96b250a](https://github.com/hossainchisty/LeafLine-Client/commit/96b250a82e0c74b74ad56d52d5ff6fed71ba15d4))
+
+
+
 # [2.36.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.35.0...v2.36.0) (2023-10-07)
 
 
@@ -41,15 +50,6 @@
 ### Features
 
 * Use skeleton for books ([c8ed543](https://github.com/hossainchisty/LeafLine-Client/commit/c8ed5430a20d5eb9b2b7b3084923c1016a9838ca))
-
-
-
-# [2.32.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.31.0...v2.32.0) (2023-10-05)
-
-
-### Features
-
-* User account managements demo ([ebd4869](https://github.com/hossainchisty/LeafLine-Client/commit/ebd48693d2cfc569360d4fb05949f429fabc9db2))
 
 
 
