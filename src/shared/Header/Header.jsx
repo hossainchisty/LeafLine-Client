@@ -47,7 +47,7 @@ const Header = () => {
 
           {/* Search Bar */}
           {location.pathname === '/' && (
-            <div>
+            <div className='relative'>
               <input
                 type='text'
                 placeholder='Search for books, authors...'
@@ -55,7 +55,9 @@ const Header = () => {
                 value={searchTerm}
                 onChange={handleChange}
               />
-              <SearchResults searchTerm={searchTerm} />
+              <div className='absolute z-10 w-full'>
+                <SearchResults searchTerm={searchTerm} />
+              </div>
             </div>
           )}
 

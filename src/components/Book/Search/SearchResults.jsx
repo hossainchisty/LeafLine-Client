@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, index }) => {
   const { _id, title, thumbnail, isLoading } = book;
 
   return (
-    <div className='flex rounded-lg shadow-lg overflow-hidden mb-4'>
+    <div className='flex rounded-lg shadow-lg overflow-hidden bg-white'>
       {isLoading ? (
         <Skeleton width={80} height={100} className='rounded-t-lg' />
       ) : (
@@ -18,12 +18,12 @@ const BookCard = ({ book }) => {
           alt={title}
         />
       )}
-      <div className='flex flex-col p-2 space-y-1'>
+      <div className={`flex flex-col p-2 space-y-1 w-full ${index == 0 ? "" : "border-t-2"}`}>
         <Link to={`/book/${_id}`}>
           {isLoading ? (
             <Skeleton width={130} height={18} />
           ) : (
-            <h4 className='text-sm font-semibold hover:text-green-600'>
+            <h4 className='text-sm font-semibold hover:text-green-600 w-full'>
               {title}
             </h4>
           )}
@@ -41,7 +41,7 @@ const SearchResults = ({ searchTerm }) => {
   useEffect(() => {
     setIsLoading(true);
     // Only send API request if searchTerm is not empty
-    if (searchTerm.trim() !== '') {
+    if (searchTerm.trim() !== '' && searchTerm.length > 0) {
       fetch(`${apiBaseDomain}/books/search?title=${searchTerm}`)
         .then((response) => response.json())
         .then((data) => {
@@ -62,8 +62,8 @@ const SearchResults = ({ searchTerm }) => {
 
   return (
     <div className='flex flex-col'>
-      {searchResults.map((book) => (
-        <BookCard key={book._id} book={book} />
+      {searchResults.map((book, index) => (
+        <BookCard key={book._id} book={book} index={index} />
       ))}
     </div>
   );
