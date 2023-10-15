@@ -1,3 +1,12 @@
+## [2.36.2](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.1...v2.36.2) (2023-10-15)
+
+
+### Performance Improvements
+
+* improve performance by using useCallback ([f706387](https://github.com/hossainchisty/LeafLine-Client/commit/f706387c5d487a3ee456705945daeb8db0ba1056))
+
+
+
 ## [2.36.1](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.0...v2.36.1) (2023-10-11)
 
 
@@ -41,15 +50,6 @@
 * process of reading demo ([4d79fee](https://github.com/hossainchisty/LeafLine-Client/commit/4d79feed2dcca4e3848eeb2ded7c6b00146bad3d))
 * skeleton on favorite books ([35bafd3](https://github.com/hossainchisty/LeafLine-Client/commit/35bafd3fa399f8c862d09144ea2e1351e2bd997d))
 * User profile skeleton ([5b6c4d9](https://github.com/hossainchisty/LeafLine-Client/commit/5b6c4d9a71634e1acb9a821bfd30c404f12f225d))
-
-
-
-# [2.33.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.32.0...v2.33.0) (2023-10-05)
-
-
-### Features
-
-* Use skeleton for books ([c8ed543](https://github.com/hossainchisty/LeafLine-Client/commit/c8ed5430a20d5eb9b2b7b3084923c1016a9838ca))
 
 
 
