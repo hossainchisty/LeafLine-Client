@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +12,7 @@ const Favorite = () => {
   const getToken = localStorage.getItem('userInfo');
   const token = getToken ? getToken.replace(/["']/g, '') : '';
 
-  useEffect(() => {
+  const fetchWishlist = useCallback(() => {
     setIsLoading(true);
     fetch(`${apiBaseDomain}/wishlist/`, {
       headers: {
@@ -29,7 +28,11 @@ const Favorite = () => {
       .catch((error) => {
         console.error('Error fetching favorite books:', error);
       });
-  }, [token]);
+  }, [apiBaseDomain, token]);
+
+  useEffect(() => {
+    fetchWishlist();
+  }, [fetchWishlist]);
 
   const openRemoveModal = (bookId) => {
     setRemoveBookId(bookId);
