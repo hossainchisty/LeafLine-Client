@@ -5,7 +5,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { clearToken } from "../../utils/Token";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import CartCounter from "../../components/Cart/CartCounter";
 import SearchResults from "../../components/Book/Search/SearchResults";
 
@@ -41,7 +41,7 @@ const Header = () => {
               className="h-8 mr-2 "
               alt="LeafLine Logo"
             />
-            <span className="self-center lg:text-3xl md:text-3xl font-extrabold whitespace-nowrap text-md ">
+            <span className="self-center lg:text-3xl md:text-3xl font-extrabold whitespace-nowrap text-2xl ">
               LeafLine
             </span>
           </Link>
@@ -173,7 +173,7 @@ const Header = () => {
             {/* menu- icon */}
             <div className="relative flex cursor-pointer lg:hidden md:hidden z-50">
               <FontAwesomeIcon
-                icon={faBars}
+                icon={!menu ? faBars : faXmark}
                 onClick={() => {
                   setMenu(!menu);
                 }}
@@ -193,13 +193,13 @@ const Header = () => {
                   >
                     <Link
                       to="/signup"
-                      className="ring-2 ring-rose-[#4e9fe9] hover:bg-[#4e9fe9] transition-all ease-in-out m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black hide-on-small-screen"
+                      className="flex flex-center shadow-md transition-all ease-in-out my-2 mx-4 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black "
                     >
                       Sign Up
                     </Link>
                     <Link
                       to="/signin"
-                      className=" ring-2 ring-rose-[#4e9fe9] hover:bg-[#4e9fe9] transition-all ease-in-out  m-2 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black hide-on-small-screen"
+                      className="flex flex-center shadow-md transition-all ease-in-out my-2 mx-4 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black hide-on-small-screen"
                     >
                       Sign In
                     </Link>
@@ -216,7 +216,7 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search for books, authors..."
-                className=" p-4 lg:p-6 mx-4 w-full bg-gray-200 border border-gray-300 rounded-full  focus:outline-none focus:bg-white text-black "
+                className=" p-2 lg:p-4 mx-4 w-full bg-gray-200 border border-gray-300 rounded-full  focus:outline-none focus:bg-white text-black "
                 value={searchTerm}
                 onChange={handleChange}
               />
