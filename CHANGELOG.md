@@ -1,3 +1,12 @@
+## [2.36.4](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.3...v2.36.4) (2023-10-17)
+
+
+### Bug Fixes
+
+* cart items remove functionality ([2e4106b](https://github.com/hossainchisty/LeafLine-Client/commit/2e4106bf16da1608cec04e422c86872ce399e22f))
+
+
+
 ## [2.36.3](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.2...v2.36.3) (2023-10-15)
 
 
@@ -39,15 +48,6 @@
 * Introducting book reading process on profile ([a3820b2](https://github.com/hossainchisty/LeafLine-Client/commit/a3820b24157e8c0cd46f14308d7f9d1151e1cbf9))
 * real-time search result showing on UI ([f292c5d](https://github.com/hossainchisty/LeafLine-Client/commit/f292c5d91167158c2552b462b7971c0d85806603))
 * wishlist books clickable ([4d4900b](https://github.com/hossainchisty/LeafLine-Client/commit/4d4900b2b12bbd3dd091c14b73e1c463f5029fcf))
-
-
-
-# [2.35.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.34.0...v2.35.0) (2023-10-05)
-
-
-### Features
-
-* Added 404 pages ([ba96bfd](https://github.com/hossainchisty/LeafLine-Client/commit/ba96bfd278954ec04aa2e2cca9c99c0cefa352b6))
 
 
 
