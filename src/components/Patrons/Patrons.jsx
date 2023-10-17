@@ -15,13 +15,13 @@ const Patrons = () => {
           collaborators and build an even better platform for all of us.
         </p>
         <div className='flex mb-2'>
-          <button className='bg-zinc-700 hover:bg-zinc-900 text-white font-bold py-2 px-4 rounded mr-2'>
+          <button className='bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded mr-2'>
             $5/month
           </button>
-          <button className='bg-zinc-700 hover:bg-zinc-900 text-white font-bold py-2 px-4 rounded mr-2'>
+          <button className='bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded mr-2'>
             $10/month
           </button>
-          <button className='bg-zinc-700 hover:bg-zinc-900 text-white font-bold py-2 px-4 rounded'>
+          <button className='bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded'>
             $20/month
           </button>
         </div>
