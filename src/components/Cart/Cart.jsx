@@ -25,7 +25,7 @@ const Cart = () => {
       .then((response) => response.json())
       .then((cartInfo) => {
         const bookData = cartInfo.data[0].items.map((cartItem) => ({
-          cartId: cartItem._id,
+          bookId: cartItem.book._id,
           title: cartItem.book.title,
           thumbnail: cartItem.book.thumbnail,
           quantity: cartItem.quantity,
@@ -58,8 +58,8 @@ const Cart = () => {
       });
   }, [token]);
 
-  const handleRemoveItem = (cartId) => {
-    fetch(`${apiBaseDomain}/cart/remove/${cartId}`, {
+  const handleRemoveItem = (bookId) => {
+    fetch(`${apiBaseDomain}/cart/remove/${bookId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ const Cart = () => {
       .then((response) => response.json())
       .then(() => {
         const updatedCartItems = cartItems.filter(
-          (item) => item.cartId !== cartId
+          (item) => item.bookId !== bookId
         );
         decrementItemCount();
         setCartItems(updatedCartItems);
@@ -79,10 +79,10 @@ const Cart = () => {
       });
   };
 
-  const handleQuantityChange = (cartId, newQuantity) => {
+  const handleQuantityChange = (bookId, newQuantity) => {
     // Update the quantity in the cartItems state
     const updatedCartItems = cartItems.map((item) => {
-      if (item.cartId === cartId) {
+      if (item.bookId === bookId) {
         return {
           ...item,
           quantity: newQuantity,
@@ -138,7 +138,7 @@ const Cart = () => {
                             // Decrease quantity when the "-" button is clicked
                             if (item.quantity > 1) {
                               handleQuantityChange(
-                                item.cartId,
+                                item.bookId,
                                 item.quantity - 1
                               );
                             }
@@ -156,7 +156,7 @@ const Cart = () => {
                             // Update quantity when the input value changes
                             const newQuantity = parseInt(e.target.value, 10);
                             if (!isNaN(newQuantity) && newQuantity >= 1) {
-                              handleQuantityChange(item.cartId, newQuantity);
+                              handleQuantityChange(item.bookId, newQuantity);
                             }
                           }}
                         />
@@ -165,7 +165,7 @@ const Cart = () => {
                           onClick={() => {
                             // Increase quantity when the "+" button is clicked
                             handleQuantityChange(
-                              item.cartId,
+                              item.bookId,
                               item.quantity + 1
                             );
                           }}
@@ -183,7 +183,7 @@ const Cart = () => {
                           strokeWidth='1.5'
                           stroke='currentColor'
                           className='h-5 w-5 cursor-pointer duration-150 hover:text-red-500'
-                          onClick={() => handleRemoveItem(item.cartId)}
+                          onClick={() => handleRemoveItem(item.bookId)}
                         >
                           <path
                             strokeLinecap='round'
