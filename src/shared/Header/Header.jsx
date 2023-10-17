@@ -33,8 +33,8 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="">
-        <div className="relative flex justify-between mx-auto p-4  items-center ">
+      <nav className=" ">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center">
             <img
               src="https://cdn3d.iconscout.com/3d/free/thumb/free-book-4573596-3802605.png"
@@ -45,6 +45,24 @@ const Header = () => {
               LeafLine
             </span>
           </Link>
+
+          <div className=" max-w-full lg:flex hidden ">
+            {/* search bar */}
+            {location.pathname === "/" && (
+              <div className="relative my-4 flex w-full">
+                <input
+                  type="text"
+                  placeholder="Search for books, authors..."
+                  className=" w-1/2 md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black ml-4"
+                  value={searchTerm}
+                  onChange={handleChange}
+                />
+                <div className="absolute z-10 w-full py-6 my-10">
+                  <SearchResults searchTerm={searchTerm} />
+                </div>
+              </div>
+            )}
+          </div>
           <div className="flex items-center ">
             {/* icons and menu*/}
             {isLoggedIn && (
@@ -171,35 +189,37 @@ const Header = () => {
             )}
             {/* end of iconicons and profile */}
             {/* menu- icon */}
-            <div className="relative flex cursor-pointer lg:hidden md:hidden z-50">
-              <FontAwesomeIcon
-                icon={!menu ? faBars : faXmark}
-                onClick={() => {
-                  setMenu(!menu);
-                }}
-              />
-            </div>
+            {!isLoggedIn && (
+              <div className="relative flex cursor-pointer lg:hidden z-50">
+                <FontAwesomeIcon
+                  icon={!menu ? faBars : faXmark}
+                  onClick={() => {
+                    setMenu(!menu);
+                  }}
+                />
+              </div>
+            )}
             {/* end menu icon */}
-            <div className={`${menu ? " " : ""} `}>
+            <div>
               {/*  login and signin icon */}
               {!isLoggedIn && (
                 <>
                   <div
                     className={`${
                       menu
-                        ? "flex flex-col lg:flex-row absolute lg:block right-0 top-0 py-20 my-5 z-40 h-screen w-1/2 bg-white"
-                        : "hidden lg:flex "
+                        ? "flex flex-col lg:flex-row absolute lg:block right-0 top-0 py-20 my-5 z-40 h-screen lg:w-[40%] w-1/2 bg-white"
+                        : "hidden lg:flex md:hidden"
                     } `}
                   >
                     <Link
                       to="/signup"
-                      className="flex flex-center shadow-md transition-all ease-in-out my-2 mx-4 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black "
+                      className="flex flex-center hover:shadow-md shadow-sm transition-all ease-in-out my-2 mx-4 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black w-auto"
                     >
                       Sign Up
                     </Link>
                     <Link
                       to="/signin"
-                      className="flex flex-center shadow-md transition-all ease-in-out my-2 mx-4 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black hide-on-small-screen"
+                      className="flex flex-center hover:shadow-md shadow-sm transition-all ease-in-out my-2 mx-4 py-2 px-4 rounded-md duration-200 border-b border-gray-100  text-black w-auto "
                     >
                       Sign In
                     </Link>
@@ -209,14 +229,14 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="flex max-w-full">
+        <div className="flex lg:hidden justify-center items-center mx-8 md:mx-16">
           {/* search bar */}
           {location.pathname === "/" && (
             <div className="relative my-4 flex w-full">
               <input
                 type="text"
                 placeholder="Search for books, authors..."
-                className=" p-2 lg:p-4 mx-4 w-full bg-gray-200 border border-gray-300 rounded-full  focus:outline-none focus:bg-white text-black "
+                className=" p-3 lg:p-3 mx-4 w-full bg-gray-200 border border-gray-300 rounded-full  focus:outline-none focus:bg-white text-black "
                 value={searchTerm}
                 onChange={handleChange}
               />
@@ -225,8 +245,8 @@ const Header = () => {
               </div>
             </div>
           )}
+          {/* <searchBox /> */}
         </div>
-        {/* ^_^ end of search-bar */}
       </nav>
     </header>
   );
