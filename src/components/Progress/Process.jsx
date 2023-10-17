@@ -97,7 +97,9 @@ const Process = () => {
           {renderBooks(favoriteBooks.currentlyReading)}
         </div>
       ) : (
-        <p>No books added yet</p>
+        <p className='border bg-slate-100 py-10 text-center font-semibold'>
+          No books added yet
+        </p>
       )}
 
       <div className='text-xl font-semibold mb-2 text-black mt-10'>
@@ -125,7 +127,9 @@ const Process = () => {
           {renderBooks(favoriteBooks.read)}
         </div>
       ) : (
-        <p>No books added yet</p>
+        <p className='border bg-slate-100 py-10 text-center font-semibold'>
+          No books added yet
+        </p>
       )}
     </div>
   );
