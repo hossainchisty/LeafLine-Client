@@ -1,7 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useCartItemCount } from '../../context/CartItemCountContext';
 import { Link } from 'react-router-dom';
+import cartEmpty from '/public/icon_empty_cart.png';
 
 const Cart = () => {
   const getToken = localStorage.getItem('userInfo');
@@ -95,17 +97,17 @@ const Cart = () => {
   return (
     <div className='h-screen mt-10 flex justify-center items-start'>
       {cartItems.length === 0 ? (
-        <div className='flex-row'>
-          <h3 className='font-bold'>Your cart is empty</h3>
-          <p className='text-gray-700'>
-            Looks like you have not added anything to you cart.
+        <div className='flex flex-col items-center'>
+          <div className='mb-5'>
+            <img src={cartEmpty} alt='Empty cart' />
+          </div>
+          <h2 className='text-3xl font-bold'>Your Cart is Empty!</h2>
+          <p className='text-gray-700 mt-3'>
+            Looks like you haven't made an order yet.
           </p>
           <div className='mt-5'>
-            <Link
-              to='/'
-              className='bg-gray-600 hover:bg-gray-900 px-2 py-2 rounded-md text-white font-medium'
-            >
-              Go ahead & explore
+            <Link to='/' className='text-blue-500'>
+              Continue Shopping
             </Link>
           </div>
         </div>
