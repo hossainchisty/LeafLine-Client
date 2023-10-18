@@ -1,26 +1,26 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Header from './shared/Header/Header';
-import BookList from './components/Book/BookList';
-import Profile from './components/Profile/Profile';
-import Signin from './pages/Auth/Signin';
-import Signup from './pages/Auth/Signup';
-import EmailVerification from './components/Verification/EmailVerification';
-import BookDetails from './components/Book/BookDetails';
-import Cart from './components/Cart/Cart';
-import PasswordReset from './pages/Auth/PasswordReset';
-import { CartItemCountProvider } from './context/CartItemCountContext';
-import CheckoutForm from './pages/Payment/CheckoutForm';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import PaymentSuccess from './pages/Payment/PaymentSuccess';
-import Favorite from './components/Favorite/Favorite';
-import MyAccount from './components/Profile/MyAccount';
-import PageNotFound from './shared/404/PageNotFound';
-import { useMemo } from 'react';
-import Patrons from './components/Patrons/Patrons';
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Header from "./shared/Header/Header";
+import BookList from "./components/Book/BookList";
+import Profile from "./components/Profile/Profile";
+import Signin from "./pages/auth/Signin";
+import Signup from "./pages/auth/Signup";
+import EmailVerification from "./components/Verification/EmailVerification";
+import BookDetails from "./components/Book/BookDetails";
+import Cart from "./components/Cart/Cart";
+import PasswordReset from "./pages/auth/PasswordReset";
+import { CartItemCountProvider } from "./context/CartItemCountContext";
+import CheckoutForm from "./pages/Payment/CheckoutForm";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentSuccess from "./pages/Payment/PaymentSuccess";
+import Favorite from "./components/Favorite/Favorite";
+import MyAccount from "./components/Profile/MyAccount";
+import PageNotFound from "./shared/404/PageNotFound";
+import { useMemo } from "react";
+import Patrons from "./components/Patrons/Patrons";
 
 // Load Stripe API key
 const stripe_key = import.meta.env.VITE_STRIPE_API_KEY;
@@ -40,7 +40,7 @@ function App() {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching book data:', error);
+        console.error("Error fetching book data:", error);
         setIsLoading(false);
       });
   }, []);
@@ -50,39 +50,39 @@ function App() {
     <CartItemCountProvider>
       <>
         <Header />
-        <div className='container mx-auto p-4'>
+        <div className="container mx-auto p-4">
           <Routes>
             {/* Route related to book searching and browsing */}
             <Route
-              path='/'
+              path="/"
               element={<BookList books={memoizedBooks} isLoading={isLoading} />}
             />
-            <Route path='/book/:productId' element={<BookDetails />} />
+            <Route path="/book/:productId" element={<BookDetails />} />
 
             {/* Route related to authentication */}
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/signin' element={<Signin />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
             <Route
-              path='/verify-email/:token'
+              path="/verify-email/:token"
               element={<EmailVerification />}
             />
 
             {/* Route related to user profile */}
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/wishlists' element={<Favorite />} />
-            <Route path='/order' element={<MyAccount />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/forget-password' element={<PasswordReset />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/wishlists" element={<Favorite />} />
+            <Route path="/order" element={<MyAccount />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/forget-password" element={<PasswordReset />} />
 
             {/* Route for placing an order */}
-            <Route path='/place-order' element={<CheckoutFormWrapper />} />
-            <Route path='/payment-success' element={<PaymentSuccess />} />
+            <Route path="/place-order" element={<CheckoutFormWrapper />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
 
             {/* Become a Patron */}
-            <Route path='/patron' element={<Patrons />} />
+            <Route path="/patron" element={<Patrons />} />
 
             {/* Route for handle page not found */}
-            <Route path='*' element={<PageNotFound />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
       </>
