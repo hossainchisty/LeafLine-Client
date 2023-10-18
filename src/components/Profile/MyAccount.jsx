@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Orders from './Orders';
-import Wishlists from './Wishlists';
 import Questions from './Questions';
 import Refunds from './Refunds';
 import Reports from './Reports';
@@ -16,8 +15,6 @@ const MyAccount = () => {
     switch (selectedOption) {
       case 'orders':
         return <Orders />;
-      case 'wishlists':
-        return <Wishlists />;
       case 'questions':
         return <Questions />;
       case 'refunds':
@@ -43,16 +40,6 @@ const MyAccount = () => {
             }
           >
             My Orders
-          </li>
-          <li
-            onClick={() => handleOptionClick('wishlists')}
-            className={
-              selectedOption === 'wishlists'
-                ? 'font-bold text-green-600'
-                : 'font-semibold text-gray-700'
-            }
-          >
-            My Wishlists
           </li>
           <li
             onClick={() => handleOptionClick('questions')}
