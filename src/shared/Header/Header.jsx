@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <header>
       <nav className=' '>
-        <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+        <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-12'>
           <Link to='/' className='flex items-center'>
             <img
               src='https://cdn3d.iconscout.com/3d/free/thumb/free-book-4573596-3802605.png'
@@ -46,23 +46,6 @@ const Header = () => {
             </span>
           </Link>
 
-          <div className=' max-w-full lg:flex hidden '>
-            {/* search bar */}
-            {location.pathname === '/' && (
-              <div className='relative my-4 flex w-full'>
-                <input
-                  type='text'
-                  placeholder='Search for books, authors...'
-                  className=' w-1/2 md:w-64 bg-gray-200 border border-gray-300 rounded-full pl-6 pr-4 py-2 focus:outline-none focus:bg-white text-black ml-4'
-                  value={searchTerm}
-                  onChange={handleChange}
-                />
-                <div className='absolute z-10 w-full py-6 my-10'>
-                  <SearchResults searchTerm={searchTerm} />
-                </div>
-              </div>
-            )}
-          </div>
           <div className='flex items-center '>
             {/* icons and menu*/}
             {isLoggedIn && (
