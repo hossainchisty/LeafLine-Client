@@ -4,6 +4,10 @@ The LeafLine Book Store is an online platform that aims to provide a user-friend
 
 **Live Demo**: [Link](https://leafline.vercel.app/)
 
+**Test User**
+- Email: chisty@gmail.com
+- Password: chisty
+
 Jump to [What's new?](https://github.com/hossainchisty/LeafLine-Client/blob/master/CHANGELOG.md)
 
 
