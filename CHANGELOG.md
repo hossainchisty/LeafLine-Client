@@ -1,3 +1,12 @@
+# [2.38.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.37.0...v2.38.0) (2024-01-21)
+
+
+### Features
+
+* Added hero section for better UI ([ae81929](https://github.com/hossainchisty/LeafLine-Client/commit/ae81929f559cdb42f899e957d92a32320d06eafd))
+
+
+
 # [2.37.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.4...v2.37.0) (2023-10-18)
 
 
@@ -31,15 +40,6 @@
 ### Performance Improvements
 
 * improve performance by using useCallback ([f706387](https://github.com/hossainchisty/LeafLine-Client/commit/f706387c5d487a3ee456705945daeb8db0ba1056))
-
-
-
-## [2.36.1](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.0...v2.36.1) (2023-10-11)
-
-
-### Performance Improvements
-
-* improve performance by using ```useMemo``` ([96b250a](https://github.com/hossainchisty/LeafLine-Client/commit/96b250a82e0c74b74ad56d52d5ff6fed71ba15d4))
 
 
 
