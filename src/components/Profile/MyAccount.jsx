@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Orders from './Orders';
-import Questions from './Questions';
 import Refunds from './Refunds';
-import Reports from './Reports';
+import Review from './Review';
+import Returns from './Returns';
+import Cancellation from './Cancellation';
 
 const MyAccount = () => {
   const [selectedOption, setSelectedOption] = useState('orders');
@@ -15,12 +16,14 @@ const MyAccount = () => {
     switch (selectedOption) {
       case 'orders':
         return <Orders />;
-      case 'questions':
-        return <Questions />;
       case 'refunds':
         return <Refunds />;
-      case 'reports':
-        return <Reports />;
+      case 'reviews':
+        return <Review />;
+      case 'returns':
+        return <Returns />;
+      case 'cancellation':
+        return <Cancellation />;
       default:
         return null;
     }
@@ -41,15 +44,26 @@ const MyAccount = () => {
           >
             My Orders
           </li>
+
           <li
-            onClick={() => handleOptionClick('questions')}
+            onClick={() => handleOptionClick('reviews')}
             className={
-              selectedOption === 'questions'
+              selectedOption === 'reviews'
                 ? 'font-bold text-green-600'
                 : 'font-semibold text-gray-700'
             }
           >
-            My Questions
+            My Reviews
+          </li>
+          <li
+            onClick={() => handleOptionClick('returns')}
+            className={
+              selectedOption === 'returns'
+                ? 'font-bold text-green-600'
+                : 'font-semibold text-gray-700'
+            }
+          >
+            My Returns
           </li>
           <li
             onClick={() => handleOptionClick('refunds')}
@@ -62,14 +76,14 @@ const MyAccount = () => {
             My Refunds
           </li>
           <li
-            onClick={() => handleOptionClick('reports')}
+            onClick={() => handleOptionClick('cancellation')}
             className={
-              selectedOption === 'reports'
+              selectedOption === 'cancellation'
                 ? 'font-bold text-green-600'
                 : 'font-semibold text-gray-700'
             }
           >
-            My Reports
+            My Cancellation
           </li>
         </ul>
       </div>
