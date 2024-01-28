@@ -1,3 +1,12 @@
+# [2.40.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.39.0...v2.40.0) (2024-01-28)
+
+
+### Features
+
+* Added umami analytics ([b2e7010](https://github.com/hossainchisty/LeafLine-Client/commit/b2e701008d6062e3137fd79b7180a5977a122374))
+
+
+
 # [2.39.0](https://github.com/hossainchisty/LeafLine-Client/compare/v2.38.0...v2.39.0) (2024-01-28)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * cart items remove functionality ([2e4106b](https://github.com/hossainchisty/LeafLine-Client/commit/2e4106bf16da1608cec04e422c86872ce399e22f))
-
-
-
-## [2.36.3](https://github.com/hossainchisty/LeafLine-Client/compare/v2.36.2...v2.36.3) (2023-10-15)
-
-
-### Performance Improvements
-
-* Skeleton and performance ([007a023](https://github.com/hossainchisty/LeafLine-Client/commit/007a0236298665362b26c753af7c2c3ee10e5eb0))
 
 
 
