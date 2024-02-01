@@ -45,10 +45,11 @@ const Signup = () => {
       <div className='bg-white rounded-lg shadow-lg p-4 w-80'>
         {isEmailSent ? ( // Render a message if the email has been sent
           <div>
-            <h2 className='text-2xl font-semibold mb-4'>Check your inbox</h2>
+            <h2 className='text-2xl font-semibold mb-4'>
+              Thank you for signing up for LeafLine
+            </h2>
             <div className='mb-4 text-gray-600'>
-              We are glad that you're with us! We've sent you a verification
-              link to the email address{' '}
+              We've sent you an email to verify your email address.
               <span className='text-black font-semibold'>
                 {submittedEmail.email}
               </span>

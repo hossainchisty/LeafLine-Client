@@ -34,7 +34,7 @@ const CheckoutForm = () => {
       .then((response) => response.json())
       .then((cartInfo) => {
         const bookData = cartInfo.data[0].items.map((cartItem) => ({
-          bookId: cartItem._id,
+          book: cartItem.book,
           title: cartItem.book.title,
           thumbnail: cartItem.book.thumbnail,
           quantity: cartItem.quantity,
@@ -81,12 +81,14 @@ const CheckoutForm = () => {
 
   const handlePayment = async () => {
     const orderData = {
-      address: address,
-      city: city,
-      postalCode: zip,
-      totalPrice: totalPrice,
-      items: cartItems.map((item) => ({
-        bookId: item.bookId,
+      shippingAddress: {
+        street: address,
+        city: city,
+        postalCode: zip,
+        country: 'Bangladesh',
+      },
+      books: cartItems.map((item) => ({
+        bookId: item.book,
         quantity: item.quantity,
       })),
     };
