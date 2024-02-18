@@ -2,6 +2,8 @@
 
 The LeafLine Book Store is an online platform that aims to provide a user-friendly and efficient way for customers to explore, purchase, and manage books.
 
+![demo](https://github.com/hossainchisty/LeafLine-Client/assets/62835101/174c53fd-add5-4b24-9899-797718f83eaa)
+
 **Live Demo**: [Link](https://leafline.vercel.app/)
 
 **Test User**
